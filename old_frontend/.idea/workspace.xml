@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a8518611-5b0f-4ed9-a62e-e264bf9e57d8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../model.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../model.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../movies-app-backend/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../movies-app-backend/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../movies-app-backend/src/main/java/program/demo/MoviesAppBackendApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../movies-app-backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../movies-app-backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../movies-app-backend/src/test/java/program/demo/MoviesAppBackendApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/globals.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2cIJpDoNtfjNfRpljxKBuOvsC8h" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/alex/labs/react/lab3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
+    "ts.external.directory.path": "/home/alex/coursework-3/movies-app-frontend/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages/movies/filters/dropdown-signal" />
+      <recent name="$PROJECT_DIR$/src/pages/movies/filters/OneValuesInputElement/PresentParams/FilterElement" />
+      <recent name="$PROJECT_DIR$/src/pages/movies" />
+      <recent name="$PROJECT_DIR$/src/pages/movies/filters/use-effects" />
+      <recent name="$PROJECT_DIR$/src/pages/movies/Dropdown/props" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a8518611-5b0f-4ed9-a62e-e264bf9e57d8" name="Changes" comment="" />
+      <created>1707793339997</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1707793339997</updated>
+      <workItem from="1707793341073" duration="1267000" />
+      <workItem from="1707956902871" duration="1915000" />
+      <workItem from="1708621308778" duration="17000" />
+      <workItem from="1708695367018" duration="24674000" />
+      <workItem from="1708771849080" duration="20864000" />
+      <workItem from="1708795767543" duration="7127000" />
+      <workItem from="1708847368642" duration="601000" />
+      <workItem from="1708872454723" duration="1376000" />
+      <workItem from="1708930337689" duration="34000" />
+      <workItem from="1709240455942" duration="65000" />
+      <workItem from="1709309529169" duration="9291000" />
+      <workItem from="1709322344513" duration="9669000" />
+      <workItem from="1709394300754" duration="5776000" />
+      <workItem from="1709407666039" duration="3862000" />
+      <workItem from="1709453467937" duration="2114000" />
+      <workItem from="1709459881028" duration="606000" />
+      <workItem from="1709468819913" duration="26414000" />
+      <workItem from="1709552638738" duration="20000" />
+      <workItem from="1711183419769" duration="11530000" />
+      <workItem from="1711229442944" duration="7181000" />
+      <workItem from="1711275426603" duration="546000" />
+      <workItem from="1711541513712" duration="15000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
