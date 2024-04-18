@@ -17,9 +17,18 @@ import java.io.InputStream;
 @Controller
 @RequestMapping("/files")
 public class FileController {
-    @GetMapping("/posters/{id}")
+    @GetMapping("/covers/{id}")
     public ResponseEntity<InputStreamResource> getPoster(@PathVariable String id) throws IOException {
-        String filePath = "static/posters/" + id;
+        return getFile("static/covers/", id);
+    }
+
+    @GetMapping("/banners/{id}")
+    public ResponseEntity<InputStreamResource> getBanner(@PathVariable String id) throws IOException {
+        return getFile("static/banners/", id);
+    }
+
+    private ResponseEntity<InputStreamResource> getFile(String folder, String id) throws IOException {
+        String filePath = folder + id;
         ClassPathResource resource = new ClassPathResource(filePath);
 
         if (!resource.exists()) {
