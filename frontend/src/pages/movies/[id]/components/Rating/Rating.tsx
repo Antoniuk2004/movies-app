@@ -2,17 +2,20 @@ import RatingLayout from "@/pages/movies/[id]/components/Rating/components/Ratin
 import {FaRegStar, FaStar} from "react-icons/fa6";
 import TopLine from "@/pages/movies/[id]/components/Rating/components/TopLine";
 import RateButton from "@/pages/movies/[id]/components/Rating/components/RateButton";
-import {movieSignal} from "@/signals/movie-signal";
+import {useRatingData} from "@/pages/movies/[id]/components/Rating/use-rating-data";
 
 const Rating = () => {
-    const {rating, totalRates} = movieSignal.value;
+    const ratingData = useRatingData();
+    if(!ratingData) return null;
+
+    const {rating, totalRates} = ratingData;
 
     return (
         <RatingLayout>
             <TopLine>
                 <FaStar className="text-yellow-400"/>
                 <span>{rating}</span>
-                <span className={"text-lg leading-[18px] opacity-70 font-light"}>{totalRates}</span>
+                <span className={"text-lg responsive:text-xs leading-[18px] opacity-70 font-light"}>{totalRates}</span>
             </TopLine>
             <RateButton>
                 <FaRegStar/>

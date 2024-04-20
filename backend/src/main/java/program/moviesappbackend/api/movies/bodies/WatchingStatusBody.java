@@ -1,4 +1,4 @@
-package program.moviesappbackend.api.movies.models;
+package program.moviesappbackend.api.movies.bodies;
 
 import lombok.Getter;
 import lombok.Setter;

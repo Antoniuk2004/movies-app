@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { movieQuerySignal } from "@/pages/movies/[id]/movie-query-signal";
 
-export const getImage = async (type: ImageType, id: string) => {
+export const getImage = async (type: string, id: string) => {
   const url = `http://localhost:8080/files/${type}/${id}.jpg`;
 
   try {
@@ -28,8 +28,6 @@ export const getImage = async (type: ImageType, id: string) => {
       reader.readAsDataURL(response.data);
     });
   } catch (error) {
-    movieQuerySignal.value.router.push("/");
-    console.log(error);
-    return Promise.reject(error);
+    return null;
   }
 };

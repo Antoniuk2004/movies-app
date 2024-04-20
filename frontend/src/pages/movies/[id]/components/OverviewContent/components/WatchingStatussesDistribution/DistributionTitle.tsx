@@ -1,14 +1,14 @@
 import {movieSignal} from "@/signals/movie-signal";
-import DistributionTitleLayout from "@/pages/movies/[id]/components/OverviewContent/components/DistributionTitleLayout";
+import SmallTitleLayout from "@/common-components/SmallTitleLayout";
 
 const DistributionTitle = () => {
     const {totalWatchingStatuses} = movieSignal.value;
 
     return (
-        <DistributionTitleLayout>
+        <SmallTitleLayout>
             <span>{`In the lists of ${totalWatchingStatuses} 
             ${totalWatchingStatuses === 1 ? 'person' : 'people'}`}</span>
-        </DistributionTitleLayout>
+        </SmallTitleLayout>
     )
 }
 

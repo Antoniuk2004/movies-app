@@ -1,3 +1,4 @@
+import {motion} from "framer-motion";
 import ProgressbarLayout from "./ProgressbarLayout";
 
 type ProgressbarProps = {
@@ -9,9 +10,12 @@ const Progressbar = (props: ProgressbarProps) => {
 
     return (
         <ProgressbarLayout>
-            <div style={{width: `${percentage}%`}}
-                 className={"bg-primary rounded-md h-full"}>
-            </div>
+            <motion.div
+                initial={{width: 0}}
+                animate={{width: `${percentage}%`}}
+                transition={{duration: 0.5}}
+                className={"bg-primary rounded-md h-full"}>
+            </motion.div>
         </ProgressbarLayout>
     )
 }

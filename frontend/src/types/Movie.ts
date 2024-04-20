@@ -3,6 +3,7 @@ import {WatchingStatus} from "@/types/WatchingStatus";
 import {Country} from "@/types/Country";
 import {RatingDistribution} from "@/types/RatingDistribution";
 import {WatchingStatusDistribution} from "@/types/WatchingStatusDistribution";
+import {Person} from "@/types/Person";
 
 export type Movie = {
     watchingStatus: WatchingStatus | null,
@@ -24,4 +25,7 @@ export type Movie = {
     watchingStatusDistribution: WatchingStatusDistribution | null,
     totalRates: number | null,
     totalWatchingStatuses: number | null,
+    actors: Person[] | null,
+    directors: Person[] | null,
+    userRating: number | null,
 }

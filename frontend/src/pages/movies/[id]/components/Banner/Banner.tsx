@@ -8,10 +8,10 @@ const Banner = () => {
 
     return (
         <BannerLayout>
-            <Overlay/>
+            {banner && <Overlay/>}
             <Image
-                className="w-banner-image responsive:h-119 object-cover object-center"
-                src={banner}
+                className="object-cover h-full object-center"
+                src={banner ? banner : '/images/no-banner.jpg'}
                 width={1450}
                 height={360}
                 alt="Banner"

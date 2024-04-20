@@ -29,4 +29,7 @@ public class Movie {
     private String studio;
     private List<RatingDistribution> ratingDistribution;
     private List<WatchingStatusDistribution> watchingStatusDistribution;
+    private List<Person> actors;
+    private List<Person> directors;
+    private int userRating;
 }

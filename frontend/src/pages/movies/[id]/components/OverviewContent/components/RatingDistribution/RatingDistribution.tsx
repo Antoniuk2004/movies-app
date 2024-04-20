@@ -3,8 +3,6 @@ import DistributionTitle
     from "@/pages/movies/[id]/components/OverviewContent/components/RatingDistribution/components/DistributionTitle/DistributionTitle";
 import RatingRowList
     from "@/pages/movies/[id]/components/OverviewContent/components/RatingDistribution/components/RatingRowList/RatingRowList";
-import {movieSignal} from "@/signals/movie-signal";
-import {addValuesToRatingDistribution} from "@/pages/movies/[id]/helpers";
 import PercentageColumnLayout
     from "@/pages/movies/[id]/components/OverviewContent/components/RatingDistribution/components/Column/PercentageColumnLayout";
 import Column
@@ -12,19 +10,19 @@ import Column
 import CountColumnLayout
     from "@/pages/movies/[id]/components/OverviewContent/components/RatingDistribution/components/Column/CountColumnLayout";
 import FlexContainer from "@/pages/movies/[id]/components/OverviewContent/components/FlexContainer";
+import {useRating} from "@/pages/movies/[id]/components/OverviewContent/components/RatingDistribution/use-rating";
 
 const RatingDistribution = () => {
-    let {ratingDistribution, totalRates} = movieSignal.value;
-    ratingDistribution = addValuesToRatingDistribution(ratingDistribution, totalRates);
+    const {distribution} = useRating();
 
-    const percents = ratingDistribution.map((rating) => rating.percentage);
-    const counts = ratingDistribution.map((rating) => rating.count);
+    const percents = distribution.map((rating) => rating.percentage);
+    const counts = distribution.map((rating) => rating.count);
 
     return (
         <DistributionLayout>
             <DistributionTitle/>
             <FlexContainer>
-                <RatingRowList ratingDistribution={ratingDistribution}/>
+                <RatingRowList ratingDistribution={distribution}/>
                 <PercentageColumnLayout>
                     <Column additionalValue={"%"} right={true} left={true} values={percents}/>
                 </PercentageColumnLayout>

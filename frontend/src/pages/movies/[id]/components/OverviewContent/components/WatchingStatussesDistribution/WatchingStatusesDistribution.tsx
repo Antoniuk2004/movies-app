@@ -1,5 +1,3 @@
-import DistributionLayout
-    from "@/pages/movies/[id]/components/OverviewContent/components/RatingDistribution/DistributionLayout";
 import {movieSignal} from "@/signals/movie-signal";
 import {addValuesToWatchingStatusDistribution} from "@/pages/movies/[id]/helpers";
 import DistributionTitle
@@ -17,15 +15,18 @@ import RatingRowLayout
     from "@/pages/movies/[id]/components/OverviewContent/components/RatingDistribution/components/RatingRow/RatingRowLayout";
 import Progressbar
     from "@/pages/movies/[id]/components/OverviewContent/components/RatingDistribution/components/Progressbar/Progressbar";
+import DistributionLayout
+    from "@/pages/movies/[id]/components/OverviewContent/components/RatingDistribution/DistributionLayout";
+import {
+    useStatuses
+} from "@/pages/movies/[id]/components/OverviewContent/components/WatchingStatussesDistribution/use-statuses";
 
 const WatchingStatusesDistribution = () => {
-    let {watchingStatusDistribution, totalWatchingStatuses} = movieSignal.value;
-    watchingStatusDistribution = addValuesToWatchingStatusDistribution(watchingStatusDistribution,
-        totalWatchingStatuses);
+    const {distribution} = useStatuses();
 
-    const statuses = watchingStatusDistribution.map((value) => value.watchingStatus);
-    const percents = watchingStatusDistribution.map((value) => value.percentage);
-    const counts = watchingStatusDistribution.map((rating) => rating.count);
+    const statuses = distribution.map((value) => value.watchingStatus);
+    const percents = distribution.map((value) => value.percentage);
+    const counts = distribution.map((rating) => rating.count);
 
     return (
         <DistributionLayout>
@@ -35,7 +36,7 @@ const WatchingStatusesDistribution = () => {
                     <Column right={false} left={true} values={statuses}/>
                 </CountColumnLayout>
                 <RatingRowListLayout>
-                    {watchingStatusDistribution.map((element, index) =>
+                    {distribution.map((element, index) =>
                         <RatingRowLayout key={index}>
                             <Progressbar percentage={element.percentage}/>
                         </RatingRowLayout>

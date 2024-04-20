@@ -7,10 +7,12 @@ const config: Config = {
     theme: {
         extend: {
             gridTemplateColumns: {
-                'movie-full': '260px auto 120px'
+                'movie-full': '260px 1fr auto',
+                'movie-short': '100vw',
             },
             gridTemplateRows: {
-                'movie-full': '264px 80px 264px 80px auto'
+                'movie-full': '264px 80px 264px 80px auto',
+                'movie-short': '0 repeat(3, auto) 1fr'
             },
             lineHeight: {
                 16: '4rem',
@@ -29,6 +31,7 @@ const config: Config = {
                 'cover-overlay' : 'rgba(0,0,0,0.9)',
                 'btn-light': '#dcdee2',
                 'hover-light': 'rgba(116, 116, 128, .05)',
+                'modal-backdrop' : 'rgba(0, 0, 0, 0.6)',
             },
             backgroundColor: {
                 background: '#f3f3f3',
@@ -40,10 +43,13 @@ const config: Config = {
                 'small-banner': 'radial-gradient(circle at center -70%, rgba(242, 242, 243, 0.3) 0%, #f2f2f3 85%)'
             },
             width: {
+                45: '11.25rem',
                 65: '16.25rem',
                 banner: 'calc(100% + 2rem)',
                 'banner-image' : '1450px',
                 13.5: '3.375rem',
+                125: '31.25rem',
+                'responsive-modal': 'calc(100vw - 2rem)',
             },
             maxWidth: {
                 wrapper: '75rem'
@@ -51,11 +57,17 @@ const config: Config = {
             screens: {
                 wrapper: {'max': '1200px'},
                 responsive: {"max": '1024px'},
+                'too-small' : {"max": '400px'},
             },
             height: {
+                65: '16.25rem',
                 90: '22.5rem',
                 119: '29.75rem',
                 25: '6.25rem',
+                'modal-backdrop' : '100svh',
+            },
+            fontSize: {
+                'rate-modal-start' : '1.6875rem'
             }
         },
     },

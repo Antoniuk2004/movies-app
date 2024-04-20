@@ -23,10 +23,13 @@ public class MovieService {
     public Optional<Movie> getMovieById(int id, String username) {
         Optional<Movie> movie = movieRepository.findById(id, username);
 
-        if(movie.isPresent()) {
+        if (movie.isPresent()) {
             movie.get().setGenres(movieRepository.findGenresByMovieId(id));
             movie.get().setRatingDistribution(movieRepository.getRatingDistribution(id));
-            movie.get().setWatchingStatusDistribution(movieRepository.getWatchingStatusDistribution(id));
+            movie.get().setWatchingStatusDistribution(movieRepository
+                    .getWatchingStatusDistribution(id));
+            movie.get().setActors(movieRepository.getActorsByMovieId(id));
+            movie.get().setDirectors(movieRepository.getDirectorsByMovieId(id));
             return movie;
         } else {
             return Optional.empty();
@@ -41,5 +44,9 @@ public class MovieService {
 
     public boolean updateWatchingStatus(int movieId, int watchingStatusId, String username) {
         return movieRepository.updateWatchingStatus(movieId, watchingStatusId, username);
+    }
+
+    public boolean updateRating(int movieId, int rating, String username) {
+        return movieRepository.updateRating(movieId, rating, username);
     }
 }

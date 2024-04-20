@@ -4,8 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import program.moviesappbackend.api.movies.bodies.RatingBody;
 import program.moviesappbackend.api.movies.models.Movie;
-import program.moviesappbackend.api.movies.models.WatchingStatusBody;
+import program.moviesappbackend.api.movies.bodies.WatchingStatusBody;
 import program.moviesappbackend.auth.services.TokenService;
 
 import java.util.List;
@@ -65,6 +66,20 @@ public class MovieController {
         if (username == null) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
         if (movieService.updateWatchingStatus(id, watchingStatusId, username)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PutMapping("/{id}/rating")
+    public ResponseEntity<Void> updateRating(@PathVariable int id,
+                                             @RequestBody RatingBody body,
+                                             @RequestHeader(name = "Authorization") String authorizationHeader) {
+        int rating = body.getRating();
+
+        String username = getUserId(authorizationHeader);
+        if (username == null) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+
+        if (movieService.updateRating(id, rating, username)) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

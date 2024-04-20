@@ -7,8 +7,6 @@ const MediaTabs = () => {
         <MediaTabLayout>
             <Tab value={TabSelection.Overview}/>
             <Tab value={TabSelection.Comments}/>
-            <Tab value={TabSelection.Actors}/>
-            <Tab value={TabSelection.Directors}/>
         </MediaTabLayout>
     )
 }

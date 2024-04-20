@@ -1,6 +1,5 @@
-package program.moviesappbackend.api.file;
+package program.moviesappbackend.api.files;
 
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -25,6 +24,16 @@ public class FileController {
     @GetMapping("/banners/{id}")
     public ResponseEntity<InputStreamResource> getBanner(@PathVariable String id) throws IOException {
         return getFile("static/banners/", id);
+    }
+
+    @GetMapping("/actors/{id}")
+    public ResponseEntity<InputStreamResource> getActors(@PathVariable String id) throws IOException {
+        return getFile("static/actors/", id);
+    }
+
+    @GetMapping("/directors/{id}")
+    public ResponseEntity<InputStreamResource> getDirectors(@PathVariable String id) throws IOException {
+        return getFile("static/directors/", id);
     }
 
     private ResponseEntity<InputStreamResource> getFile(String folder, String id) throws IOException {

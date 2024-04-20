@@ -21,4 +21,7 @@ export const movieSignal = signal<Movie>({
     totalRates: null,
     totalWatchingStatuses: null,
     watchingStatusDistribution: null,
+    actors: null,
+    directors: null,
+    userRating: null,
 });

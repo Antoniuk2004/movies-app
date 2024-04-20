@@ -15,7 +15,7 @@ const WatchBlock = () => {
     return (
         <WatchBlockLayout>
             <WatchButton/>
-            <Block height={'h-1/2'}>
+            <Block height={'h-1/2 responsive:h-full'}>
                 <Dropdown
                     onElementClick={updateWatchingStatus}
                     setSelected={SetSelected}

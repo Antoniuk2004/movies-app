@@ -6,7 +6,13 @@ import {movieSignal} from "@/signals/movie-signal";
 import {movieQuerySignal} from "@/pages/movies/[id]/movie-query-signal";
 import {getImage} from "@/api/image-request";
 import {ImageType} from "@/types/ImageType";
-import {calcTotalRates, roundNumber} from "@/pages/movies/[id]/helpers";
+import {
+    addValuesToRatingDistribution,
+    addValuesToWatchingStatusDistribution,
+    calcTotalRates,
+    getImages,
+    roundNumber
+} from "@/pages/movies/[id]/helpers";
 
 export const useMovieData = (id: number | null, selectedValue: TabSelection | null) => {
     const [movieData, setMovieData] = useState<Movie | null>(null);
@@ -26,9 +32,15 @@ export const useMovieData = (id: number | null, selectedValue: TabSelection | nu
                 data.cover = await getImage(ImageType.Cover, id.toString());
                 data.banner = await getImage(ImageType.Banner, id.toString());
                 data.rating = roundNumber(data.rating, 2);
+                data.actors = await getImages(data.actors, "actors");
+                data.directors = await getImages(data.directors, "directors");
                 data.totalRates = calcTotalRates(data.ratingDistribution);
                 data.totalWatchingStatuses =
                     calcTotalRates(data.watchingStatusDistribution);
+                data.watchingStatusDistribution = addValuesToWatchingStatusDistribution(data.watchingStatusDistribution,
+                    data.totalWatchingStatuses)
+                data.ratingDistribution = addValuesToRatingDistribution(data.ratingDistribution,
+                    data.totalRates);
 
                 movieSignal.value = data;
                 setMovieData(data);

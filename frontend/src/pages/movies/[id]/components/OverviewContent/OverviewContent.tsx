@@ -6,12 +6,21 @@ import RatingDistribution
 import DistributionContainer from "@/pages/movies/[id]/components/OverviewContent/components/DistributionContainer";
 import WatchingStatusesDistribution
     from "@/pages/movies/[id]/components/OverviewContent/components/WatchingStatussesDistribution/WatchingStatusesDistribution";
+import SectionBody
+    from "@/pages/movies/[id]/components/OverviewContent/components/People/components/SectionBody/SectionBody";
+import {movieSignal} from "@/signals/movie-signal";
+import MediaInfoSmall from "@/pages/movies/[id]/components/MediaInfoSmall/MediaInfoSmall";
 
 const OverviewContent = () => {
+    const {actors, directors} = movieSignal.value;
+
     return (
         <MediaBodyLayout>
+            <MediaInfoSmall/>
             <Description/>
             <GenreList/>
+            <SectionBody people={actors} title={'Actors'}/>
+            <SectionBody people={directors} title={'Directors'}/>
             <DistributionContainer>
                 <RatingDistribution/>
                 <WatchingStatusesDistribution/>
