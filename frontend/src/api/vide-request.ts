@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-export const getVideoRequest = async (id: number) => {
+export const getVideoRequest = async (id: string) => {
     const url = `http://localhost:8080/api/videos/${id}`;
 
     try {

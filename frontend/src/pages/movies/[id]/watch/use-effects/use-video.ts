@@ -1,16 +1,17 @@
 import {useEffect, useState} from "react";
 import {getVideoRequest} from "@/api/vide-request";
 
-export const useVideo = () => {
+export const useVideo = (moviePath: string) => {
     const [video, setVideo] = useState<null | string>(null);
 
     useEffect(() => {
-        const getVideo = async (id: number) => {
+        const getVideo = async (id: string) => {
             setVideo(await getVideoRequest(id));
         }
 
-        getVideo(1);
-    }, []);
+        if (!moviePath) return;
+        getVideo(moviePath);
+    }, [moviePath]);
 
     return {video}
 }

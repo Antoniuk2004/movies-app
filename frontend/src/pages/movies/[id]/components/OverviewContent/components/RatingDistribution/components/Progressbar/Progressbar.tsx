@@ -3,6 +3,7 @@ import ProgressbarLayout from "./ProgressbarLayout";
 
 type ProgressbarProps = {
     percentage: number;
+
 }
 
 const Progressbar = (props: ProgressbarProps) => {

@@ -1,8 +1,16 @@
 import {LayoutProps} from "@/types/LayoutProps";
 
-const ProgressbarLayout = ({children}: LayoutProps) => {
+type ProgressbarLayoutProps = LayoutProps & {
+    bgColor?: string;
+}
+
+const ProgressbarLayout = (props: ProgressbarLayoutProps) => {
+    const {bgColor, children} = props;
+
     return (
-        <div className={"rounded-md bg-gray-200 w-full h-1.5 mx-1.5"}>
+        <div className={`
+        ${bgColor ? bgColor : "bg-gray-200"}
+        rounded-md w-full h-1.5 mx-1.5`}>
             {children}
         </div>
     )

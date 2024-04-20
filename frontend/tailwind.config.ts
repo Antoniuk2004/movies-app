@@ -27,11 +27,12 @@ const config: Config = {
                 'header': '#fef3e1',
                 'banner-top': 'rgba(0,0,0,0.15)',
                 'banner-center': 'rgba(0,0,0,0.35)',
-                'banner-bottom' : 'rgba(0,0,0,0.6)',
-                'cover-overlay' : 'rgba(0,0,0,0.9)',
+                'banner-bottom': 'rgba(0,0,0,0.6)',
+                'cover-overlay': 'rgba(0,0,0,0.9)',
                 'btn-light': '#dcdee2',
                 'hover-light': 'rgba(116, 116, 128, .05)',
-                'modal-backdrop' : 'rgba(0, 0, 0, 0.6)',
+                'modal-backdrop': 'rgba(0, 0, 0, 0.6)',
+                'btn-hover': 'rgba(33, 37, 41, 0.1)'
             },
             backgroundColor: {
                 background: '#f3f3f3',
@@ -43,10 +44,11 @@ const config: Config = {
                 'small-banner': 'radial-gradient(circle at center -70%, rgba(242, 242, 243, 0.3) 0%, #f2f2f3 85%)'
             },
             width: {
+                12.5: '3.125rem',
                 45: '11.25rem',
                 65: '16.25rem',
                 banner: 'calc(100% + 2rem)',
-                'banner-image' : '1450px',
+                'banner-image': '1450px',
                 13.5: '3.375rem',
                 125: '31.25rem',
                 'responsive-modal': 'calc(100vw - 2rem)',
@@ -57,17 +59,21 @@ const config: Config = {
             screens: {
                 wrapper: {'max': '1200px'},
                 responsive: {"max": '1024px'},
-                'too-small' : {"max": '400px'},
+                'too-small': {"max": '400px'},
             },
             height: {
+                17.5: '4.375rem',
                 65: '16.25rem',
                 90: '22.5rem',
                 119: '29.75rem',
                 25: '6.25rem',
-                'modal-backdrop' : '100svh',
+                'modal-backdrop': '100svh',
+            },
+            minHeight: {
+                'app-without-normal-header': 'calc(100svh - 3.5rem)',
             },
             fontSize: {
-                'rate-modal-start' : '1.6875rem'
+                'rate-modal-start': '1.6875rem'
             }
         },
     },

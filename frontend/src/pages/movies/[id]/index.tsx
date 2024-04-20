@@ -16,13 +16,11 @@ import RateModal from "@/pages/movies/[id]/components/RateModal/RateModal";
 const MoviePage = () => {
     movieQuerySignal.value = useMediaQuery();
     const {movieId, selectedValue} = movieQuerySignal.value;
-    const {movieData} = useMovieData(movieId, selectedValue);
+    const movieData = useMovieData(movieId, selectedValue);
 
     if (!movieData) return null;
     return (
         <>
-            <RateModal/>
-            <Header/>
             <Wrapper>
                 <MovieAppLayout>
                     <Banner/>

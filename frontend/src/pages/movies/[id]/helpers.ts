@@ -20,9 +20,9 @@ export const stringToTabSelection = (value: string): TabSelection | undefined =>
     return undefined;
 }
 
-export const formatDuration = (minutes: number) => {
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = minutes % 60;
+export const formatDuration = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const remainingMinutes = Math.floor((seconds % 3600) / 60);
 
     const hoursString = hours > 0 ? `${hours}h` : '';
     const minutesString = remainingMinutes > 0 ? `${remainingMinutes}min` : '';
