@@ -1,7 +1,4 @@
 import {useVideo} from "@/pages/movies/[id]/watch/use-effects/use-video";
-import {useRef} from "react";
-import VideoPlayerLayout from "@/pages/movies/[id]/watch/components/VideoPlayer/VideoPlayerLayout";
-import Wrapper from "@/common-components/Wrapper";
 import MovieInfo from "@/pages/movies/[id]/watch/components/MovieInfo/MovieInfo";
 import {useWatchMovieData} from "@/pages/movies/[id]/watch/use-effects/use-watch-movie-data";
 import {useWatchQuery} from "@/pages/movies/[id]/watch/use-effects/use-watch-query";

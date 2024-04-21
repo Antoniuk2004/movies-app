@@ -32,7 +32,8 @@ const config: Config = {
                 'btn-light': '#dcdee2',
                 'hover-light': 'rgba(116, 116, 128, .05)',
                 'modal-backdrop': 'rgba(0, 0, 0, 0.6)',
-                'btn-hover': 'rgba(33, 37, 41, 0.1)'
+                'btn-hover': 'rgba(33, 37, 41, 0.1)',
+                'black-with-opacity': 'rgba(0, 0, 0, 0.3)',
             },
             backgroundColor: {
                 background: '#f3f3f3',
