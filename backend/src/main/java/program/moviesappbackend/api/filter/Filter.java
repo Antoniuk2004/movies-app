@@ -5,9 +5,8 @@ package program.moviesappbackend.api.filter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import program.moviesappbackend.api.filter.actors.Actor;
-import program.moviesappbackend.api.filter.directors.Director;
 import program.moviesappbackend.api.filter.genres.Genre;
+import program.moviesappbackend.api.movies.models.Person;
 
 import java.util.List;
 
@@ -16,6 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 public class Filter {
     private List<Genre> genres;
-    private List<Actor> actors;
-    private List<Director> directors;
+    private List<Person> actors;
+    private List<Person> directors;
 }

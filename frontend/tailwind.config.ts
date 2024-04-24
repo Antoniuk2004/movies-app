@@ -9,10 +9,13 @@ const config: Config = {
             gridTemplateColumns: {
                 'movie-full': '260px 1fr auto',
                 'movie-short': '100vw',
+                'catalog-full': '1fr 330px',
+                'catalog-top-line': '1fr 11.25rem',
+
             },
             gridTemplateRows: {
                 'movie-full': '264px 80px 264px 80px auto',
-                'movie-short': '0 repeat(3, auto) 1fr'
+                'movie-short': '0 repeat(3, auto) 1fr',
             },
             lineHeight: {
                 16: '4rem',
@@ -20,7 +23,7 @@ const config: Config = {
             boxShadow: {
                 'header-shadow': '0 1px 3px 0.1px rgba(0, 0, 0, 0.12)',
                 'media-tabs': 'inset 0 -1px #e5e5e5',
-                dropdown: 'rgba(0, 0, 0, 0.2) 0px 4px 16px 0px'
+                dropdown: 'rgba(0, 0, 0, 0.2) 0px 4px 16px 0px',
             },
             colors: {
                 'primary': '#ff9001',
@@ -33,9 +36,12 @@ const config: Config = {
                 'hover-light': 'rgba(116, 116, 128, .05)',
                 'modal-backdrop': 'rgba(0, 0, 0, 0.6)',
                 'btn-hover': 'rgba(33, 37, 41, 0.1)',
-                'black-with-opacity': 'rgba(0, 0, 0, 0.3)',
+                'white-with-opacity': 'rgba(255, 255, 255, 0.3)',
+                'play-button': 'rgba(0, 0, 0, 0.2)',
+                'play-button-hovered': 'rgba(0, 0, 0, 0.4)',
             },
             backgroundColor: {
+                'black-opacity-50': 'rgba(0, 0, 0, 0.5)',
                 background: '#f3f3f3',
                 'genre-button': 'rgba(249,248,248,255)',
                 'genre-button-hover': '#eeeef0',
@@ -53,6 +59,7 @@ const config: Config = {
                 13.5: '3.375rem',
                 125: '31.25rem',
                 'responsive-modal': 'calc(100vw - 2rem)',
+                82.5: '20.625rem',
             },
             maxWidth: {
                 wrapper: '75rem'
@@ -61,17 +68,29 @@ const config: Config = {
                 wrapper: {'max': '1200px'},
                 responsive: {"max": '1024px'},
                 'too-small': {"max": '400px'},
+                'movies-grid-sm' : {'max': '530px'},
+                'movies-grid-md' : {'max': '768px'},
+                'movies-grid-lg' : {'max': '915px'},
+                'movies-grid-xl' : {'max': '990px'},
+            },
+            margin: {
+                19.5: '4.875rem',
             },
             height: {
                 17.5: '4.375rem',
+                25: '6.25rem',
                 65: '16.25rem',
                 90: '22.5rem',
                 119: '29.75rem',
-                25: '6.25rem',
+                175: '43.75rem',
+                152: '38rem',
+                'catalog-filter' : 'calc(100svh - 3.5rem - 2rem)',
                 'modal-backdrop': '100svh',
+                'video-play-button-zone': 'calc(100% - 4.875rem)'
             },
             minHeight: {
                 'app-without-normal-header': 'calc(100svh - 3.5rem)',
+                110: '27.5rem',
             },
             fontSize: {
                 'rate-modal-start': '1.6875rem'

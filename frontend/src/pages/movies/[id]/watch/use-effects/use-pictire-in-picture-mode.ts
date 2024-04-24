@@ -1,4 +1,4 @@
-import {videoPlayerSignal} from "@/pages/movies/[id]/watch/components/VideoPlayer/video-player-signal";
+import {videoPlayerSignal} from "@/pages/movies/[id]/watch/components/VideoPlayer/signals/video-player-signal";
 import {useEffect, useRef} from "react";
 import {effect} from "@preact/signals-react";
 import {handlePauseInPIPMode, handlePlayInPIPMode} from "@/pages/movies/[id]/watch/handlers";

@@ -17,7 +17,7 @@ export const registerUser = async (data: DataType, setData: Dispatch<SetStateAct
         const jwt = response.data.jwt;
         Cookies.set('jwt', jwt);
         statusSignal.value = 200;
-        data.router.push("/movies");
+        data.router.push("/main");
     } catch (e) {
         setData((prev) => ({
             ...prev,

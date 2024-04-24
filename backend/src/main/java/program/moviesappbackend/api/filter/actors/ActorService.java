@@ -2,6 +2,7 @@ package program.moviesappbackend.api.filter.actors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import program.moviesappbackend.api.movies.models.Person;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class ActorService {
         this.actorRepository = actorRepository;
     }
 
-    public List<Actor> getAllActors() {
+    public List<Person> getAllActors() {
         return actorRepository.findAllActors();
     }
 }

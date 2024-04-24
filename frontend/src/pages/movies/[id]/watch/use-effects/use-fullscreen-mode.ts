@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {effect} from "@preact/signals-react";
-import {videoPlayerSignal} from "@/pages/movies/[id]/watch/components/VideoPlayer/video-player-signal";
+import {videoPlayerSignal} from "@/pages/movies/[id]/watch/components/VideoPlayer/signals/video-player-signal";
 
 export const useFullscreenMode = () => {
     const [isFullscreen, setIsFullscreen] =

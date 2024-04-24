@@ -75,12 +75,14 @@ export const addValuesToWatchingStatusDistribution =
 
         for (let i = 0; i < statuses.length; i++) {
             const elementFromObject = Object.values(watchingStatusDistribution)
-                .find((value) => value.watchingStatus === statuses[i]);
+                .find((value) => value.watchingStatus
+                    === statuses[i]);
 
             if (elementFromObject) {
                 arrOfRates.push({
                     ...elementFromObject,
-                    percentage: roundNumber((elementFromObject.count / total) * 100, 2)
+                    percentage: roundNumber((elementFromObject.count / total)
+                        * 100, 2)
                 })
             } else {
                 arrOfRates.push({

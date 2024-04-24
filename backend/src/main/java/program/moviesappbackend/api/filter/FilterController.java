@@ -4,15 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import program.moviesappbackend.api.filter.actors.Actor;
 import program.moviesappbackend.api.filter.actors.ActorService;
-import program.moviesappbackend.api.filter.directors.Director;
 import program.moviesappbackend.api.filter.directors.DirectorService;
 import program.moviesappbackend.api.filter.genres.Genre;
 import program.moviesappbackend.api.filter.genres.GenreService;
+import program.moviesappbackend.api.movies.models.Person;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/filter")
@@ -31,8 +29,8 @@ public class FilterController {
     @GetMapping("/")
     public Filter getFilterParams() {
         List<Genre> genres = genreService.getAllGenres();
-        List<Actor> actors = actorService.getAllActors();
-        List<Director> directors = directorService.getAllDirectors();
+        List<Person> actors = actorService.getAllActors();
+        List<Person> directors = directorService.getAllDirectors();
 
         return new Filter(genres, actors, directors);
     }

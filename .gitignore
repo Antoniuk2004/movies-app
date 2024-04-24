@@ -2,4 +2,4 @@
 movies-app-frontend/node_modules
 movies-app-frontend/.pnp.js
 movies-app-frontend/.yarn/install-state.gz
-
+**/*.mp4

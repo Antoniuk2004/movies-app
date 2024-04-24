@@ -1,5 +1,5 @@
 import {useEffect, useRef} from "react";
-import {handleMouseMove, handleMouseUp} from "@/pages/movies/[id]/watch/handlers";
+import {handleVolumeMouseMove, handleMouseUp} from "@/pages/movies/[id]/watch/handlers";
 
 export const useVolumeCursor = () => {
     const isDraggingRef = useRef(false);
@@ -7,12 +7,12 @@ export const useVolumeCursor = () => {
 
     useEffect(() => {
         document.addEventListener("mousemove", (e) =>
-            handleMouseMove(e, isDraggingRef, sliderRef));
+            handleVolumeMouseMove(e, isDraggingRef, sliderRef));
         document.addEventListener("mouseup", () => handleMouseUp(isDraggingRef));
 
         return () => {
             document.removeEventListener("mousemove", (e) =>
-                handleMouseMove(e, isDraggingRef, sliderRef));
+                handleVolumeMouseMove(e, isDraggingRef, sliderRef));
             document.removeEventListener("mouseup", () => handleMouseUp(isDraggingRef));
         };
     }, [isDraggingRef.current]);

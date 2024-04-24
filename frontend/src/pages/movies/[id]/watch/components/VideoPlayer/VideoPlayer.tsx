@@ -2,6 +2,9 @@ import VideoPlayerLayout from "./VideoPlayerLayout";
 import {useRef} from "react";
 import Wrapper from "@/common-components/Wrapper";
 import {setVideoElement} from "@/pages/movies/[id]/watch/helpers";
+import {useVideoPlayerKeyboard} from "@/pages/movies/[id]/watch/use-effects/use-video-player-keyboard";
+import {useBlackScreen} from "@/pages/movies/[id]/watch/use-effects/use-black-screen";
+import BlackScreen from "@/pages/movies/[id]/watch/components/VideoPlayer/components/BlackScreen";
 
 type PlayerProps = {
     video: string;
@@ -9,6 +12,7 @@ type PlayerProps = {
 
 const VideoPlayer = (props: PlayerProps) => {
     const {video} = props;
+    useVideoPlayerKeyboard();
 
     return (
         <Wrapper>

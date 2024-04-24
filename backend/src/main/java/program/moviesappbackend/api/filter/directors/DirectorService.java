@@ -2,6 +2,7 @@ package program.moviesappbackend.api.filter.directors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import program.moviesappbackend.api.movies.models.Person;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class DirectorService {
         this.directorRepository = directorRepository;
     }
 
-    public List<Director> getAllDirectors() {
+    public List<Person> getAllDirectors() {
         return directorRepository.getAllDirectors();
     }
 }

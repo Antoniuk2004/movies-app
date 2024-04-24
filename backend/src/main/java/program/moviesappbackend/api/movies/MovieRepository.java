@@ -4,11 +4,9 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import program.moviesappbackend.api.filter.genres.Genre;
-import program.moviesappbackend.api.movies.models.Movie;
-import program.moviesappbackend.api.movies.models.Person;
-import program.moviesappbackend.api.movies.models.RatingDistribution;
-import program.moviesappbackend.api.movies.models.WatchingStatusDistribution;
+import program.moviesappbackend.api.movies.models.*;
 
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -65,16 +63,15 @@ public class MovieRepository {
     @SneakyThrows
     public Optional<Movie> findById(int id, String username) {
         String sql = "SELECT MRO.rating as user_rating, R.rating, S.name AS studio,  " +
-                "C.name AS origin_country, MR.rating_name AS mpaa_rating,  " +
+                "C.name AS origin_country, MP.rating_name AS mpaa_rating,  " +
                 "WSO.name AS watching_status,M.movie_id, M.title, M.duration,  " +
                 "M.description, M.cover, M.release_year, M.movie_path, M.added_at,  " +
                 "M.banner   " +
                 "FROM movies M   " +
                 "INNER JOIN movies_countries MV ON M.movie_id = MV.movie_id   " +
                 "INNER JOIN countries C ON C.country_id = MV.country_id   " +
-                "INNER JOIN movies_mpaa_ratings MMR ON M.movie_id = MMR.movie_id   " +
-                "INNER JOIN mpaa_ratings MR ON MR.rating_id = MMR.rating_id   " +
                 "INNER JOIN movies_studios MS ON M.movie_id = MS.movie_id   " +
+                "INNER JOIN mpaa_ratings MP ON M.mpaa_rating = MP.rating_id " +
                 "INNER JOIN studios S ON S.studio_id = MS.studio_id " +
                 "INNER JOIN users UO ON UO.username = ? " +
                 "LEFT JOIN movies_ratings MRO ON MRO.user_id = UO.user_id  " +
@@ -174,11 +171,11 @@ public class MovieRepository {
     @SneakyThrows
     public boolean updateRating(int movieId, int rating, String username) {
         String sql = "INSERT INTO movies_ratings (user_id, movie_id, rating) " +
-                     "SELECT U.user_id, ?, ? " +
-                     "FROM users AS U " +
-                     "WHERE U.username = ? " +
-                     "ON CONFLICT (user_id, movie_id) DO UPDATE " +
-                     "SET rating = EXCLUDED.rating;";
+                "SELECT U.user_id, ?, ? " +
+                "FROM users AS U " +
+                "WHERE U.username = ? " +
+                "ON CONFLICT (user_id, movie_id) DO UPDATE " +
+                "SET rating = EXCLUDED.rating;";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, movieId);
@@ -276,5 +273,15 @@ public class MovieRepository {
             }
             return people;
         }
+    }
+
+    public List<Movie> findFilteredMovies(FilterRequest filterRequest) {
+//        String sql = buildFilterSql(filterRequest);
+
+//        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+//
+//        }
+
+        return null;
     }
 }

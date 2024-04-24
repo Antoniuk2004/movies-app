@@ -1,6 +1,6 @@
 import IconLayout from "@/pages/movies/[id]/watch/components/VideoPlayer/components/IconLayout";
 import {MdFullscreen, MdPictureInPictureAlt, MdVolumeOff, MdVolumeUp} from "react-icons/md";
-import SideLayout from "@/pages/movies/[id]/watch/components/VideoPlayer/components/LeftSide/SideLayout";
+import SideLayout from "@/pages/movies/[id]/watch/components/SideLayout";
 import VolumeContainer
     from "@/pages/movies/[id]/watch/components/VideoPlayer/components/VolumeContainer/VolumeContainer";
 import {toggleFullScreen, togglePictureInPicture} from "@/pages/movies/[id]/watch/helpers";

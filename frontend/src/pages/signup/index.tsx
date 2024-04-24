@@ -4,12 +4,13 @@ import {handleSignUpFormSubmit} from "@/common-components/Sign/handlers";
 import {useRouter} from "next/navigation";
 import SignElement from "@/common-components/Sign/SignElement/SignElement";
 import {DataType} from "@/types/DataType";
+import {useInitialUsername} from "@/pages/signup/use-initial-username";
 
-const SignIn = () => {
-    const router = useRouter();
+const SignUp = () => {
+    const {data, setData} = useInitialUsername();
     const buttonRef = useRef<HTMLButtonElement>(null);
-    const [data, setData] = useState<DataType>(initialData(router));
 
+    if (data === null || data?.username === null) return null;
     return (
         <SignElement
             data={data}
@@ -22,4 +23,4 @@ const SignIn = () => {
     )
 }
 
-export default SignIn;
+export default SignUp;

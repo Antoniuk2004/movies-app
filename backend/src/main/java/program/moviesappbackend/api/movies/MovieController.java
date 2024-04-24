@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import program.moviesappbackend.api.movies.bodies.RatingBody;
+import program.moviesappbackend.api.movies.models.FilterRequest;
 import program.moviesappbackend.api.movies.models.Movie;
 import program.moviesappbackend.api.movies.bodies.WatchingStatusBody;
 import program.moviesappbackend.auth.services.TokenService;
@@ -92,5 +93,11 @@ public class MovieController {
             return validation.get("sub").toString();
         }
         return null;
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<String> filterMovies(@RequestBody FilterRequest filterRequest) {
+
+        return new ResponseEntity<>(filterRequest.getCountries().get(0), HttpStatus.OK);
     }
 }

@@ -85,16 +85,31 @@ public class UserRepository {
             Set<Role> roles = new HashSet<>();
             roles.add(new Role(roleId, authority));
 
-            ApplicationUser user = ApplicationUser.builder()
+            return ApplicationUser.builder()
                     .userId(userId)
                     .username(username)
                     .password(password)
                     .profilePicture(profilePicture)
                     .authorities(roles)
                     .build();
-            return user;
         }
 
         return new ApplicationUser();
+    }
+
+    @SneakyThrows
+    public boolean existsByUsername(String username) {
+        String sql = "SELECT EXISTS(SELECT 1 FROM users WHERE username = ?)";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+
+            if(resultSet.next()){
+                return resultSet.getBoolean(1);
+            } else {
+                return false;
+            }
+        }
     }
 }

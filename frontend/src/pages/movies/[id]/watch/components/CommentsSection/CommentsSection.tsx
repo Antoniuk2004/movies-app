@@ -3,8 +3,7 @@ import CommentsSectionLayout from "./CommentsSectionLayout";
 const CommentsSection = () => {
     return (
         <CommentsSectionLayout>
-            <span className={"mt-4"}>Comments block</span>
-            <span>Coming soon</span>
+            <span className={"mt-4"}>Coming soon</span>
         </CommentsSectionLayout>
     )
 }

@@ -2,6 +2,7 @@ package program.moviesappbackend.api.movies;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import program.moviesappbackend.api.movies.models.FilterRequest;
 import program.moviesappbackend.api.movies.models.Movie;
 
 import java.util.List;
@@ -48,5 +49,9 @@ public class MovieService {
 
     public boolean updateRating(int movieId, int rating, String username) {
         return movieRepository.updateRating(movieId, rating, username);
+    }
+
+    public List<Movie> getFilteredMovies(FilterRequest filterRequest) {
+        return movieRepository.findFilteredMovies(filterRequest);
     }
 }

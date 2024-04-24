@@ -6,13 +6,14 @@ import WatchingHeader from "@/pages/movies/[id]/watch/components/WatchingHeader/
 import CommentsSection from "@/pages/movies/[id]/watch/components/CommentsSection/CommentsSection";
 import WatchingPageLayout from "@/pages/movies/[id]/watch/WatchingPageLayout";
 import VideoPlayer from "@/pages/movies/[id]/watch/components/VideoPlayer/VideoPlayer";
+import Loader from "@/common-components/Loader/Loader";
 
 const WatchingPage = () => {
     const movieId = useWatchQuery();
     const movieData = useWatchMovieData(movieId);
     const {video} = useVideo(movieData?.moviePath);
 
-    if (!video) return null;
+    if (!video) return <Loader/>;
     return (
         <WatchingPageLayout>
             <WatchingHeader/>

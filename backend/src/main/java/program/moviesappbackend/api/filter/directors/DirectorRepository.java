@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import program.moviesappbackend.api.Gender;
+import program.moviesappbackend.api.movies.models.Person;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,23 +18,21 @@ public class DirectorRepository {
     Connection connection;
 
     @SneakyThrows
-    public List<Director> getAllDirectors() {
+    public List<Person> getAllDirectors() {
         String sql = "SELECT * FROM directors";
 
-        List<Director> directors = new ArrayList<>();
+        List<Person> directors = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Director director = Director.builder()
-                        .directorId(resultSet.getInt("director_id"))
+                Person director = Person.builder()
+                        .id(resultSet.getInt("director_id"))
                         .firstName(resultSet.getString("first_name"))
                         .surname(resultSet.getString("surname"))
-                        .birthdate(resultSet.getDate("birthdate"))
+                        .birthdate(resultSet.getTimestamp("birthdate"))
                         .nationality(resultSet.getString("nationality"))
                         .photo(resultSet.getString("photo"))
-                        .biography(resultSet.getString("biography"))
-                        .gender(Gender.valueOf(resultSet.getString("gender").toUpperCase()))
                         .build();
                 directors.add(director);
             }
