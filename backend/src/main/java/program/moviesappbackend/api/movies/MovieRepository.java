@@ -5,23 +5,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import program.moviesappbackend.api.filter.genres.Genre;
 import program.moviesappbackend.api.movies.models.*;
+import program.moviesappbackend.utils.QueryBuilder;
 
-import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Repository
 public class MovieRepository {
     final Connection connection;
 
+    final QueryBuilder queryBuilder;
+
     @Autowired
-    public MovieRepository(Connection connection) throws SQLException {
+    public MovieRepository(Connection connection, QueryBuilder queryBuilder) throws SQLException {
         this.connection = connection;
+        this.queryBuilder = queryBuilder;
     }
 
     @SneakyThrows
@@ -36,7 +40,7 @@ public class MovieRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                movies.add(buildMovie(resultSet));
+                movies.add(buildNormalMovie(resultSet));
             }
         }
 
@@ -53,7 +57,7 @@ public class MovieRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                movies.add(buildMovie(resultSet));
+                movies.add(buildNormalMovie(resultSet));
             }
         }
 
@@ -100,7 +104,7 @@ public class MovieRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                movie = buildMovie(resultSet);
+                movie = buildNormalMovie(resultSet);
             }
         }
 
@@ -108,7 +112,7 @@ public class MovieRepository {
     }
 
     @SneakyThrows
-    private Movie buildMovie(ResultSet resultSet) {
+    private Movie buildNormalMovie(ResultSet resultSet) {
         return Movie.builder()
                 .userRating(resultSet.getInt("user_rating"))
                 .mpaaRating(resultSet.getString("mpaa_rating"))
@@ -125,6 +129,21 @@ public class MovieRepository {
                 .releaseYear(resultSet.getInt("release_year"))
                 .moviePath(resultSet.getString("movie_path"))
                 .addedAt(resultSet.getTimestamp("added_at"))
+                .build();
+    }
+
+    @SneakyThrows
+    private Movie buildCatalogMovie(ResultSet resultSet){
+        return Movie.builder()
+                .movieId(resultSet.getInt("movie_id"))
+                .title(resultSet.getString("title"))
+                .duration(resultSet.getInt("duration"))
+                .releaseYear(resultSet.getInt("release_year"))
+                .mpaaRating(resultSet.getString("mpaa_rating"))
+                .addedAt(resultSet.getTimestamp("added_at"))
+                .cover(resultSet.getString("cover"))
+                .description(resultSet.getString("description"))
+                .rating(resultSet.getDouble("avg_rating"))
                 .build();
     }
 
@@ -276,12 +295,20 @@ public class MovieRepository {
     }
 
     public List<Movie> findFilteredMovies(FilterRequest filterRequest) {
-//        String sql = buildFilterSql(filterRequest);
+        String sql = queryBuilder.buildFilterQuery(filterRequest);
 
-//        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//
-//        }
+        System.out.println(sql);
 
-        return null;
+        List<Movie> movies = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                movies.add(buildCatalogMovie(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return movies;
     }
 }

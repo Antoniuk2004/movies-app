@@ -1,17 +1,15 @@
 import {useEffect, useState} from "react";
-import {moviesRequest} from "@/api/movies-request";
 import {Movie} from "@/types/Movie";
+import {effect} from "@preact/signals-react";
+import {catalogSignal} from "@/pages/catalog/catalog-signal";
 
 export const useMovies = () => {
     const [movies, setMovies] = useState<null | Movie[]>(null);
 
     useEffect(() => {
-        const getMovies = async () => {
-            const movies = await moviesRequest();
-            setMovies(movies);
-        }
-
-        getMovies();
+        effect(() => {
+           setMovies(catalogSignal.value);
+        });
     }, []);
 
     return movies;

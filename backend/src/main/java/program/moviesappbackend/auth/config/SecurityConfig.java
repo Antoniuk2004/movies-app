@@ -26,6 +26,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
+import program.moviesappbackend.utils.QueryBuilder;
 import program.moviesappbackend.utils.RSAKeyProperties;
 
 @Configuration
@@ -35,6 +36,11 @@ public class SecurityConfig {
 
     public SecurityConfig(RSAKeyProperties keys) {
         this.keys = keys;
+    }
+
+    @Bean
+    public QueryBuilder queryBuilder() {
+        return new QueryBuilder();
     }
 
     @Bean

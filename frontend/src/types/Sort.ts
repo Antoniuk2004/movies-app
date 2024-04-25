@@ -1,7 +1,9 @@
 export enum Sort {
-    Name = 'Name',
-    Rating = 'Rating',
-    Date = 'Date',
-    Asc = 'Ascending',
-    Desc = 'Descending'
+    NAME = 'Name',
+    RATING = 'Rating',
+    RELEASE_YEAR = 'Release year',
+    NOVELTY = 'Novelty',
+    DURATION = 'Duration',
+    ASC = 'Ascending',
+    DESC = 'Descending'
 }

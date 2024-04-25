@@ -1,0 +1,48 @@
+SELECT M.title
+FROM movies M
+INNER JOIN (
+    SELECT M.movie_id
+    FROM movies M
+    INNER JOIN movies_genres MG ON M.movie_id = MG.movie_id
+    INNER JOIN movies_actors MA ON M.movie_id = MA.movie_id
+    INNER JOIN movies_directors MD ON M.movie_id = MD.movie_id
+    WHERE MG.genre_id IN (1, 2, 4) -- genres
+        AND MA.actor_id IN (1, 2) -- actors
+        AND MD.director_id IN (1) -- directors
+    GROUP BY M.movie_id
+    HAVING COUNT(DISTINCT MG.genre_id) = 3
+        AND COUNT(DISTINCT MA.actor_id) = 2
+        AND COUNT(DISTINCT MD.director_id) = 1
+) AS Conditions1 ON M.movie_id = Conditions1.movie_id
+INNER JOIN (
+    SELECT M.movie_id
+    FROM movies M
+    INNER JOIN (
+        SELECT UI.username, UWJ.movie_id
+        FROM users UI
+        INNER JOIN users_watching_statuses UWJ ON UI.user_id = UWJ.user_id
+        WHERE UWJ.watching_status_id IN (1, 2) -- included watching statuses
+              AND UWJ.watching_status_id NOT IN (3) -- excluded watching statuses
+    ) AS U ON M.movie_id = U.movie_id
+    WHERE U.username = 'alex'
+) AS Conditions2 ON M.movie_id = Conditions2.movie_id
+INNER JOIN movies_countries MV ON MV.movie_id = M.movie_id
+INNER JOIN countries C ON C.country_id = MV.country_id
+INNER JOIN movies_studios MS ON M.movie_id = MS.movie_id
+INNER JOIN studios S ON S.name IN ('Columbia Pictures') -- studios
+LEFT JOIN (
+    SELECT MRI.movie_id, AVG(rating) AS avg_rating
+    FROM movies_ratings MRI GROUP BY MRI.movie_id
+) AS MR ON M.movie_id = MR.movie_id
+-- WHERE MR.avg_rating BETWEEN 6 AND 10
+WHERE MR.avg_rating > 6
+AND MR.avg_rating < 10
+AND C.name IN ('New Zealand', 'United States') -- countries
+AND mpaa_rating IN (1, 2, 3, 4) -- MPAA rating
+-- AND M.release_year BETWEEN 1000 AND 3000 -- year from to
+AND M.release_year > 1000 -- year only from
+AND M.release_year < 3000 -- year only to
+-- AND M.duration BETWEEN 0 AND 200 -- duration from to
+AND M.duration > 0 -- duration only from
+AND M.duration < 200 -- duration only to
+LIMIT 50 OFFSET 0 -- limit and offset

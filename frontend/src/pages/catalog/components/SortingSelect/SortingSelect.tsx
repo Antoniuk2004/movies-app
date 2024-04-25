@@ -7,14 +7,14 @@ import SortIcon from "@/pages/catalog/components/SortingSelect/components/SortIc
 import LeftSide from "@/pages/catalog/components/SortingSelect/components/LeftSide";
 
 const SortingSelect = () => {
-    const [selected, setSelected] = useState(Sort.Rating);
-    const [additionalCase, setAdditionalCase] = useState(Sort.Desc);
+    const [selected, setSelected] = useState(Sort.RATING);
+    const [additionalCase, setAdditionalCase] = useState(Sort.DESC);
 
     return (
         <Dropdown
             setAdditionalCase={setAdditionalCase}
-            additionalClasses={Object.values(Sort).slice(3, 5)}
-            options={Object.values(Sort).slice(0, 3)}
+            additionalClasses={Object.values(Sort).slice(5, 7)}
+            options={Object.values(Sort).slice(0, 5)}
             setSelected={setSelected}
             onElementClick={() => console.log("lol")}>
             <SortingSelectLayout>

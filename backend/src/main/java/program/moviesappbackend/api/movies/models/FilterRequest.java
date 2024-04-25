@@ -14,8 +14,8 @@ public class FilterRequest {
     private List<Integer> includedWatchingStatuses;
     private List<Integer> excludedWatchingStatuses;
     private List<Integer> mpaaRatings;
-    private List<String> countries;
-    private List<String> studios;
+    private List<Integer> countries;
+    private List<Integer> studios;
     private int yearFrom;
     private int yearTo;
     private int ratingFrom;
@@ -24,4 +24,7 @@ public class FilterRequest {
     private int durationTo;
     private int limit = 50;
     private int offset = 0;
+    private Order order;
+    private OrderType orderType;
+    private String search;
 }

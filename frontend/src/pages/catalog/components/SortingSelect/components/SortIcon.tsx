@@ -8,7 +8,7 @@ type SortIconProps = {
 const SortIcon = (props: SortIconProps) => {
     const {additionalCase} = props;
 
-    if (additionalCase === Sort.Asc) return <GoSortAsc className={"text-base"}/>;
+    if (additionalCase === Sort.ASC) return <GoSortAsc className={"text-base"}/>;
     else return <GoSortDesc className={"text-base"}/>;
 }
 

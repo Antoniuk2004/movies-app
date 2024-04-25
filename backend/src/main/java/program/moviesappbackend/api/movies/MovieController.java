@@ -95,9 +95,11 @@ public class MovieController {
         return null;
     }
 
-    @GetMapping("/filter")
-    public ResponseEntity<String> filterMovies(@RequestBody FilterRequest filterRequest) {
+    @PostMapping("/filter")
+    public ResponseEntity<List<Movie>> filterMovies(@RequestBody FilterRequest filterRequest) {
+        List<Movie> movies = movieService.getFilteredMovies(filterRequest);
 
-        return new ResponseEntity<>(filterRequest.getCountries().get(0), HttpStatus.OK);
+        if(movies.isEmpty()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(movies, HttpStatus.OK);
     }
 }
