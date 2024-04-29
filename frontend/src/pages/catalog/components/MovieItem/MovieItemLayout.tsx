@@ -12,7 +12,7 @@ const MovieItemLayout = (props: MovieItemLayoutProps) => {
     return (
         <div
             onClick={() => router.push(`/movies/${id}?selection=overview`)}
-            className={"p-2 cursor-pointer"}>
+            className={"p-2 cursor-pointer relative"}>
             {children}
         </div>
     )

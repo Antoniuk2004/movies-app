@@ -46,7 +46,7 @@ public class MovieController {
     @GetMapping("/{id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable int id,
                                               @RequestHeader(name = "Authorization") String authorizationHeader) {
-        String username = getUserId(authorizationHeader);
+        String username = getUsername(authorizationHeader);
         if (username == null) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
         Optional<Movie> optionalMovie = movieService.getMovieById(id, username);
@@ -63,7 +63,7 @@ public class MovieController {
                                                      @RequestHeader(name = "Authorization") String authorizationHeader) {
         int watchingStatusId = body.getWatchingStatusId();
 
-        String username = getUserId(authorizationHeader);
+        String username = getUsername(authorizationHeader);
         if (username == null) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
         if (movieService.updateWatchingStatus(id, watchingStatusId, username)) {
@@ -77,7 +77,7 @@ public class MovieController {
                                              @RequestHeader(name = "Authorization") String authorizationHeader) {
         int rating = body.getRating();
 
-        String username = getUserId(authorizationHeader);
+        String username = getUsername(authorizationHeader);
         if (username == null) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
         if (movieService.updateRating(id, rating, username)) {
@@ -85,7 +85,16 @@ public class MovieController {
         } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    private String getUserId(String authorizationHeader) {
+    @PostMapping("/filter")
+    public ResponseEntity<List<Movie>> filterMovies(@RequestBody FilterRequest filterRequest,
+                                                    @RequestHeader(name = "Authorization") String authorizationHeader) {
+        String username = getUsername(authorizationHeader);
+        List<Movie> movies = movieService.getFilteredMovies(filterRequest, username);
+
+        return new ResponseEntity<>(movies, HttpStatus.OK);
+    }
+
+    private String getUsername(String authorizationHeader) {
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             String jwt = authorizationHeader.substring(7);
 
@@ -95,11 +104,4 @@ public class MovieController {
         return null;
     }
 
-    @PostMapping("/filter")
-    public ResponseEntity<List<Movie>> filterMovies(@RequestBody FilterRequest filterRequest) {
-        List<Movie> movies = movieService.getFilteredMovies(filterRequest);
-
-        if(movies.isEmpty()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(movies, HttpStatus.OK);
-    }
 }

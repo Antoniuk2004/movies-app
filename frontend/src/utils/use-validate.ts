@@ -9,7 +9,6 @@ export const useValidate = (currentPage: string, unsignedPages: string[]) => {
     const router = useRouter();
 
     useEffect(() => {
-
         const validate = async () => {
             statusSignal.value = await validationRequest();
 
@@ -17,7 +16,6 @@ export const useValidate = (currentPage: string, unsignedPages: string[]) => {
                 const status = statusSignal.value;
 
                 if (!unsignedPages.includes(currentPage) && status !== 200) {
-                    console.log("pushed");
                     router.push("/")
                 }
                 setStatus(status);

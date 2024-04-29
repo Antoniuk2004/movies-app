@@ -1,11 +1,21 @@
 import {LayoutProps} from "@/types/LayoutProps";
+import Wrapper from "@/common-components/Wrapper";
 
-const HeaderLayout = ({children}: LayoutProps) => {
+type HeaderLayoutProps = LayoutProps & {
+    currentPage: string;
+}
+
+const HeaderLayout = (props: HeaderLayoutProps) => {
+    const {currentPage, children} = props;
+
     return (
-        <header className="responsive:absolute responsive:hidden w-full h-14 bg-header text-black z-20 sticky top-0 shadow-header-shadow">
-            <div className="flex h-full w-full items-center">
-                {children}
-            </div>
+        <header
+            className={`${currentPage === '/catalog' ? 'movies-grid-xl:hidden movies-grid-lg:hidden movies-grid-md:hidden movies-grid-sm:hidden' : 'responsive:absolute responsive:hidden'} w-full h-14 bg-header  z-20 sticky top-0 shadow-header-shadow`}>
+            <Wrapper>
+                <div className="flex px-5 h-full w-full items-center">
+                    {children}
+                </div>
+            </Wrapper>
         </header>
     )
 }

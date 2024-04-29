@@ -1,6 +1,6 @@
-import ModalHeaderLayout from "@/common-components/Modal/ModalHeader/layout";
+import ModalHeaderLayout from "@/common-components/RateModal/ModalHeader/layout";
 import {IoIosClose} from "react-icons/io";
-import CloseButtonLayout from "@/common-components/Modal/ModalHeader/CloseButtonLayout";
+import CloseButtonLayout from "@/common-components/RateModal/ModalHeader/CloseButtonLayout";
 
 type ModalHeaderProps = {
     text: string;

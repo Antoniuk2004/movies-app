@@ -1,8 +1,8 @@
 import {ReactNode} from "react";
-import ModalBackdrop from "@/common-components/Modal/ModalBackdrop/ModalBackdrop";
+import ModalBackdrop from "@/common-components/RateModal/ModalBackdrop/ModalBackdrop";
 import ModalHeader from "./ModalHeader/ModalHeader";
-import {useModal} from "@/common-components/Modal/use-effects/use-modal";
-import ModalLayout from "@/common-components/Modal/ModalLayout";
+import {useModal} from "@/common-components/RateModal/use-effects/use-modal";
+import ModalLayout from "@/common-components/RateModal/ModalLayout";
 
 export type ModalProps = {
     headerText: string;

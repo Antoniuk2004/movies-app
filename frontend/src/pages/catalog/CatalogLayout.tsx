@@ -1,12 +1,13 @@
 import {LayoutProps} from "@/types/LayoutProps";
 import Wrapper from "@/common-components/Wrapper";
+import CatalogForm from "@/pages/catalog/components/CatalogForm";
 
 const CatalogLayout = ({children}: LayoutProps) => {
     return (
         <Wrapper>
-            <div className={"grid select-none grid-cols-catalog-full gap-x-4 my-4"}>
+            <CatalogForm>
                 {children}
-            </div>
+            </CatalogForm>
         </Wrapper>
     )
 }

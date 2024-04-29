@@ -1,4 +1,4 @@
-import Modal from "@/common-components/Modal/Modal";
+import Modal from "@/common-components/RateModal/Modal";
 import {useRateModal} from "@/pages/movies/[id]/components/RateModal/use-rate-modal";
 import {changeRateModalVisibility, setModalRef} from "@/pages/movies/[id]/components/RateModal/helpers";
 import RateDisplay from "@/pages/movies/[id]/components/RateModal/components/RateDisplay/RateDisplay";

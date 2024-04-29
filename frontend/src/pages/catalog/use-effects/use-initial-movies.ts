@@ -5,17 +5,19 @@ import {FilterParams} from "@/types/FilterParams";
 import {Sort} from "@/types/Sort";
 import {getKeyByValue} from "@/pages/catalog/helpers";
 import {getImage} from "@/api/image-request";
-import {catalogSignal} from "@/pages/catalog/catalog-signal";
+import {catalogSignal} from "@/pages/catalog/signals/catalog-signal";
+import {useRouter} from "next/router";
+import {parseFilterQuery} from "@/pages/movies/[id]/helpers";
 
 export const useInitialMovies = () => {
     const [movies, setMovies] = useState<Movie[] | null>(null);
 
+    const router = useRouter();
+
     useEffect(() => {
         const getMovies = async () => {
-            const filterParams = {
-                order: getKeyByValue(Sort, Sort.ASC),
-                orderType: getKeyByValue(Sort, Sort.RATING)
-            }
+            if(Object.keys(router.query).length === 0) return;
+            const filterParams = parseFilterQuery(router.query)
 
             let movies: Movie[] = await moviesRequest(filterParams as FilterParams);
 
@@ -29,7 +31,7 @@ export const useInitialMovies = () => {
         }
 
         getMovies();
-    }, []);
+    }, [router]);
 
     return movies;
 }

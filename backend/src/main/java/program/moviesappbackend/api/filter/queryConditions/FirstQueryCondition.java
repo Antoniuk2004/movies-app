@@ -8,8 +8,13 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class FirstQueryCondition {
-    public void addFirstCondition(StringBuilder query, FilterRequest filterRequest) {
+    public void addFirstCondition(StringBuilder query, FilterRequest filterRequest, String username) {
         Map<String, List<Integer>> lists = makeListOfLists(filterRequest);
+
+        query.append(" LEFT JOIN (SELECT * FROM users) AS UI1 ON UI1.username = '")
+                .append(username).append("' ");
+        query.append(" LEFT JOIN users_watching_statuses UWS ON M.movie_id = UWS.movie_id AND UWS.user_id = UI1.user_id ");
+        query.append(" LEFT JOIN watching_statuses WS ON WS.watching_status_id = UWS.watching_status_id ");
 
         if (checkIfFirstConditionListsAreNull(lists)) return;
 
@@ -61,7 +66,7 @@ public class FirstQueryCondition {
         }
     }
 
-    private Map<String, List<Integer>> makeListOfLists (FilterRequest filterRequest){
+    private Map<String, List<Integer>> makeListOfLists(FilterRequest filterRequest) {
         Map<String, List<Integer>> lists = new HashMap<>();
         if (filterRequest.getGenres() != null) {
             lists.put("genres", filterRequest.getGenres());

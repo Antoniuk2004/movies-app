@@ -1,17 +1,26 @@
 import CatalogLayout from "./CatalogLayout";
 import LeftSide from "@/pages/catalog/components/LeftSide/LeftSide";
 import RightSide from "@/pages/catalog/components/RightSide/RightSide";
-import {useInitialMovies} from "@/pages/catalog/use-initial-movies";
+import {useInitialMovies} from "@/pages/catalog/use-effects/use-initial-movies";
+import Loader from "@/common-components/Loader/Loader";
+import CatalogHeader from "@/pages/catalog/components/CatalogHeader/CatalogHeader";
+import FilterModal from "@/pages/catalog/components/FilterModal/FilterModal";
+import SortingModal from "@/pages/catalog/components/SortingModal/SortingModal";
 
 const Catalog = () => {
     const movies = useInitialMovies();
 
-    if(!movies) return null;
+    if (!movies) return <Loader/>;
     return (
-        <CatalogLayout>
-            <LeftSide/>
-            <RightSide/>
-        </CatalogLayout>
+        <>
+            <CatalogHeader/>
+            <CatalogLayout>
+                <SortingModal/>
+                <FilterModal/>
+                <LeftSide/>
+                <RightSide/>
+            </CatalogLayout>
+        </>
     )
 }
 

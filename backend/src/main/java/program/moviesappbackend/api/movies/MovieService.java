@@ -51,7 +51,7 @@ public class MovieService {
         return movieRepository.updateRating(movieId, rating, username);
     }
 
-    public List<Movie> getFilteredMovies(FilterRequest filterRequest) {
-        return movieRepository.findFilteredMovies(filterRequest);
+    public List<Movie> getFilteredMovies(FilterRequest filterRequest, String username) {
+        return movieRepository.findFilteredMovies(filterRequest, username);
     }
 }

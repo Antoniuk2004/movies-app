@@ -2,7 +2,7 @@ import {LayoutProps} from "@/types/LayoutProps";
 
 const LeftSideLayout = ({children}: LayoutProps) => {
     return (
-        <div className={"w-full h-full bg-white rounded-lg"}>
+        <div className={"w-full bg-white rounded-lg min-h-inherit"}>
             {children}
         </div>
     )

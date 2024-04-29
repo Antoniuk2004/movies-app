@@ -135,6 +135,7 @@ public class MovieRepository {
     @SneakyThrows
     private Movie buildCatalogMovie(ResultSet resultSet){
         return Movie.builder()
+                .watchingStatus(resultSet.getString("watching_status"))
                 .movieId(resultSet.getInt("movie_id"))
                 .title(resultSet.getString("title"))
                 .duration(resultSet.getInt("duration"))
@@ -294,8 +295,8 @@ public class MovieRepository {
         }
     }
 
-    public List<Movie> findFilteredMovies(FilterRequest filterRequest) {
-        String sql = queryBuilder.buildFilterQuery(filterRequest);
+    public List<Movie> findFilteredMovies(FilterRequest filterRequest, String username) {
+        String sql = queryBuilder.buildFilterQuery(filterRequest, username);
 
         System.out.println(sql);
 

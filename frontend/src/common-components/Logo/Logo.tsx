@@ -1,11 +1,17 @@
 import LogoLayout from "./LogoLayout";
 import {SiWondersharefilmora} from "react-icons/si";
 
-const Logo = () => {
+type LogoProps = {
+    action?: () => void;
+}
+
+const Logo = (props: LogoProps) => {
+    const {action} = props;
+
     return (
-        <LogoLayout>
+        <LogoLayout action={action}>
             <SiWondersharefilmora/>
-            <h1>MoviesApp</h1>
+            <h1>Nunim</h1>
         </LogoLayout>
     )
 }

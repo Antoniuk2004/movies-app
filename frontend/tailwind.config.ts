@@ -27,6 +27,7 @@ const config: Config = {
             },
             colors: {
                 'primary': '#ff9001',
+                'primary-hovered': 'rgba(255, 144, 1, 0.2)',
                 'header': '#fef3e1',
                 'banner-top': 'rgba(0,0,0,0.15)',
                 'banner-center': 'rgba(0,0,0,0.35)',
@@ -62,16 +63,19 @@ const config: Config = {
                 82.5: '20.625rem',
             },
             maxWidth: {
-                wrapper: '75rem'
+                wrapper: '75rem',
+                19: '4.75rem',
+                110: '27.5rem',
+                100: '25rem',
             },
             screens: {
-                wrapper: {'max': '1200px'},
-                responsive: {"max": '1024px'},
-                'too-small': {"max": '400px'},
-                'movies-grid-sm' : {'max': '530px'},
-                'movies-grid-md' : {'max': '768px'},
-                'movies-grid-lg' : {'max': '915px'},
-                'movies-grid-xl' : {'max': '990px'},
+                wrapper: {max: '75rem'},
+                responsive: {max: '1024px'},
+                'too-small': {max: '400px'},
+                'movies-grid-sm': {max: '530px'},
+                'movies-grid-md': {max: '768px', min: '531px'},
+                'movies-grid-lg': {max: '915px', min: '769px'},
+                'movies-grid-xl': {max: '990px', min: '916px'},
             },
             margin: {
                 19.5: '4.875rem',
@@ -84,13 +88,17 @@ const config: Config = {
                 119: '29.75rem',
                 175: '43.75rem',
                 152: '38rem',
-                'catalog-filter' : 'calc(100svh - 3.5rem - 2rem)',
+                'catalog-filter': 'calc(100svh - 3.5rem - 2rem)',
+                'catalog-list': 'calc(100svh - 3.5rem - 2rem - 3.5rem - 2.75rem)',
+                'catalog-list-mobile': 'calc(100svh - 2.5rem - 2.75rem)',
                 'modal-backdrop': '100svh',
                 'video-play-button-zone': 'calc(100% - 4.875rem)'
             },
             minHeight: {
                 'app-without-normal-header': 'calc(100svh - 3.5rem)',
+                'app-without-catalog-header': 'calc(100svh - 3rem)',
                 110: '27.5rem',
+                inherit: 'inherit',
             },
             fontSize: {
                 'rate-modal-start': '1.6875rem'

@@ -1,4 +1,4 @@
-export enum WatchingStatus{
+export enum     WatchingStatus{
     Watching = 'Watching',
     Completed = 'Completed',
     OnHold = 'On Hold',

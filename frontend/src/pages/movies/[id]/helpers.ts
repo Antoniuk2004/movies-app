@@ -5,6 +5,8 @@ import {WatchingStatus} from "@/types/WatchingStatus";
 import {Person} from "@/types/Person";
 import {getImage} from "@/api/image-request";
 import {movieSignal} from "@/signals/movie-signal";
+import {FilterParams, lists} from "@/types/FilterParams";
+import {Sort} from "@/types/Sort";
 
 export const stringToTabSelection = (value: string): TabSelection | undefined => {
     if (!value) return undefined;
@@ -20,9 +22,9 @@ export const stringToTabSelection = (value: string): TabSelection | undefined =>
     return undefined;
 }
 
-export const formatDuration = (seconds: number) => {
-    const hours = Math.floor(seconds / 3600);
-    const remainingMinutes = Math.floor((seconds % 3600) / 60);
+export const formatDuration = (minutes: number) => {
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
 
     const hoursString = hours > 0 ? `${hours}h` : '';
     const minutesString = remainingMinutes > 0 ? `${remainingMinutes}min` : '';
@@ -186,4 +188,56 @@ export const getBackGroundColor = (value: number) => {
     if (value < 5) return 'bg-red-500';
     if (value > 4 && value < 7) return 'bg-yellow-400';
     else return 'bg-green-400';
+}
+
+export const createFilterQuery = (params: FilterParams) => {
+    let query = '';
+
+    const order = params.order;
+    if (order) query += `?order=${order}`;
+    else query += `?order=${Sort.DESC}`;
+
+    const orderType = params.orderType;
+    if (orderType) query += `&orderType=${orderType}`;
+    else query += `&orderType=${Sort.DESC}`;
+
+    Object.keys(params).forEach((key) => {
+        if (key === 'order' || key === 'orderType') return;
+
+        const value = params[key];
+        if (!value) return;
+
+        if (Array.isArray(value)) {
+            value.forEach((element) => {
+                if (!element) return;
+                query += `&${key}=${element}`;
+            })
+        } else {
+            query += `&${key}=${value}`;
+        }
+    });
+
+    return query;
+}
+
+export const parseFilterQuery = (query: any) => {
+    const keys = Object.keys(query);
+    const filteredQuery = {...query};
+
+    const commonElements = findCommonElements(keys, lists);
+    commonElements.forEach((element, index) => {
+        if (Array.isArray(query[element])) {
+            filteredQuery[element] = query[element].map((str: string) =>
+                parseInt(str, 10));
+        } else filteredQuery[element] = [parseInt(query[element])];
+    })
+
+    return filteredQuery;
+}
+
+const findCommonElements = (arr1: string[], arr2: string[]) => {
+    const set1 = new Set(arr1);
+    const set2 = new Set(arr2);
+    // @ts-ignore
+    return [...set1].filter(x => set2.has(x));
 }

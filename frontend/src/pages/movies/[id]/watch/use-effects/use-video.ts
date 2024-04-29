@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {getVideoRequest} from "@/api/vide-request";
+import {getVideoRequest} from "@/api/video-request";
 
 export const useVideo = (moviePath: string) => {
     const [video, setVideo] = useState<null | string>(null);

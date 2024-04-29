@@ -10,6 +10,7 @@ type DropdownProps = LayoutProps & {
     setSelected: Dispatch<SetStateAction<string>>
     setAdditionalCase?: Dispatch<SetStateAction<string>>;
     onElementClick: (option: string) => void;
+    onAdditionalCaseClick(option: string): void;
     additionalClasses?: string[];
 }
 
@@ -19,16 +20,26 @@ export const DropDownContext = createContext({
     setSelected: null,
     setAdditionalCase: null,
     setIsOpen: null,
-    onElementClick: null
+    onElementClick: null,
+    onAdditionalCaseClick: null
 });
 
 const Dropdown = (props: DropdownProps) => {
     const {isOpen, setIsOpen, optionListRef, buttonRef} = useDropdown();
-    const {children, options, setSelected, onElementClick, additionalClasses, setAdditionalCase} = props;
+    const {
+        children,
+        options,
+        setSelected,
+        onElementClick,
+        onAdditionalCaseClick,
+        additionalClasses,
+        setAdditionalCase
+    } = props;
 
     return (
         <DropDownContext.Provider value={{
             onElementClick: onElementClick,
+            onAdditionalCaseClick: onAdditionalCaseClick,
             optionListRef: optionListRef,
             buttonRef: buttonRef,
             setSelected: setSelected,

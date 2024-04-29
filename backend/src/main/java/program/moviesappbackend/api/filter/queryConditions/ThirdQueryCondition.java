@@ -3,6 +3,7 @@ package program.moviesappbackend.api.filter.queryConditions;
 import program.moviesappbackend.api.movies.models.FilterRequest;
 import program.moviesappbackend.api.movies.models.Order;
 import program.moviesappbackend.api.movies.models.OrderType;
+import program.moviesappbackend.api.movies.models.RatingDistribution;
 
 import java.util.List;
 import java.util.Map;
@@ -10,19 +11,27 @@ import java.util.stream.Collectors;
 
 public class ThirdQueryCondition {
     public void addThirdCondition(StringBuilder query, FilterRequest filterRequest) {
-
         query.append(" INNER JOIN movies_countries MV ON MV.movie_id = M.movie_id " +
                 "INNER JOIN countries C ON C.country_id = MV.country_id " +
                 "INNER JOIN movies_studios MS ON M.movie_id = MS.movie_id ");
 
         boolean whereUsed = addRating(query, filterRequest);
-        whereUsed = addList(query, filterRequest.getStudios(), "MS.studio_id", whereUsed);
-        whereUsed = addList(query, filterRequest.getCountries(), "C.country_id", whereUsed);
-        whereUsed = addList(query, filterRequest.getMpaaRatings(), "mpaa_rating", whereUsed);
+        whereUsed = addList(query, filterRequest.getStudios(), "MS.studio_id", whereUsed, true);
+        whereUsed = addList(query, filterRequest.getCountries(), "C.country_id", whereUsed, true);
+        whereUsed = addList(query, filterRequest.getMpaaRatings(), "mpaa_rating", whereUsed, true);
         whereUsed = addFromToValues(query, filterRequest, whereUsed);
         addSearch(query, filterRequest, whereUsed);
+        addExcludedWatchingStatuses(query, filterRequest, whereUsed);
         addOrder(query, filterRequest);
         addLimitOffset(query, filterRequest);
+    }
+
+    private void addExcludedWatchingStatuses(StringBuilder query, FilterRequest filterRequest, boolean whereUsed) {
+        List<Integer> watchingStatuses = filterRequest.getExcludedWatchingStatuses();
+        if (watchingStatuses == null || watchingStatuses.isEmpty()) return;
+
+        addList(query, watchingStatuses, "WS.watching_status_id", whereUsed, false);
+        query.append("OR WS.name IS NULL");
     }
 
     private void addSearch(StringBuilder query, FilterRequest filterRequest, boolean whereUsed) {
@@ -39,7 +48,15 @@ public class ThirdQueryCondition {
         OrderType orderType = filterRequest.getOrderType();
         String orderTypeValue = getOrderTypeMap().get(orderType);
 
-        query.append(" ORDER BY ").append(orderTypeValue).append(" ").append(order).append(" ");
+        if (orderType.equals(OrderType.NOVELTY)) {
+            query.append(" ORDER BY M.added_at ").append(order).append(" ");
+            return;
+        }
+
+        String nullReplacement = orderType.equals(OrderType.NAME) ? "'-'" : "0";
+
+        query.append(" ORDER BY COALESCE(").append(orderTypeValue).append(", ")
+                .append(nullReplacement).append(") ").append(order).append(" ");
     }
 
     private boolean addFromToValues(StringBuilder query, FilterRequest filterRequest, boolean whereUsed) {
@@ -95,17 +112,19 @@ public class ThirdQueryCondition {
     }
 
     private boolean addList(StringBuilder query, List<Integer> list,
-                            String columnName, boolean whereUsed) {
+                            String columnName, boolean whereUsed, boolean inList) {
 
         if (list == null || list.isEmpty()) return whereUsed;
-        addWhereOrAnd(query, whereUsed);
+        whereUsed = addWhereOrAnd(query, whereUsed);
 
         String listString = list.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(","));
-        query.append(columnName).append(" IN (").append(listString).append(") ");
+        query.append(columnName);
+        if (!inList) query.append(" NOT ");
+        query.append(" IN (").append(listString).append(") ");
 
-        return true;
+        return whereUsed;
     }
 
     private boolean addFromTo(StringBuilder query, int from, int to,
@@ -129,7 +148,7 @@ public class ThirdQueryCondition {
                 OrderType.NAME, "M.title",
                 OrderType.RATING, "MR.avg_rating",
                 OrderType.RELEASE_YEAR, "M.release_year",
-                OrderType.DURATION, "M.du,ration",
+                OrderType.DURATION, "M.duration",
                 OrderType.NOVELTY, "M.added_at"
         );
     }
