@@ -7,11 +7,14 @@ import {useRouter} from "next/router";
 import {useValidate} from "@/utils/use-validate";
 import Loader from "@/common-components/Loader/Loader";
 import { MantineProvider } from "@mantine/core";
+import Footer from "@/common-components/Footer/Footer";
+import SearchModal from "@/common-components/SearchModal/SearchModal";
 
 export default function App({Component, pageProps}: AppProps) {
     const router = useRouter();
     const currentPage = router.pathname;
-    const headerPages = ["/movies/[id]", "/catalog", "/main"];
+    const headerPages = ["/movies/[id]", "/catalog", "/main", "/movies/[id]/watch"];
+    const footerPages = ["/movies/[id]", "/catalog", "/main", "/"];
     const unsignedPages = ["/", "/signin", "/signup"];
 
     const status = useValidate(currentPage, unsignedPages);
@@ -21,8 +24,10 @@ export default function App({Component, pageProps}: AppProps) {
     return (
         <MantineProvider>
             <RateModal/>
+            <SearchModal/>
             {headerPages.includes(currentPage) && <Header currentPage={currentPage}/>}
             <Component {...pageProps} />
+            {footerPages.includes(currentPage) && <Footer currentPage={currentPage}/>}
         </MantineProvider>
     );
 }

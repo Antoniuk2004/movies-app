@@ -10,7 +10,7 @@ const HeaderLayout = (props: HeaderLayoutProps) => {
 
     return (
         <header
-            className={`${currentPage === '/catalog' ? 'movies-grid-xl:hidden movies-grid-lg:hidden movies-grid-md:hidden movies-grid-sm:hidden' : 'responsive:absolute responsive:hidden'} w-full h-14 bg-header  z-20 sticky top-0 shadow-header-shadow`}>
+            className={`${currentPage === '/catalog' ? 'movies-grid-xl:hidden movies-grid-lg:hidden movies-grid-md:hidden movies-grid-sm:hidden' : 'responsive:absolute responsive:hidden'} w-full h-14 bg-header  z-30 sticky top-0 shadow-header-shadow`}>
             <Wrapper>
                 <div className="flex px-5 h-full w-full items-center">
                     {children}

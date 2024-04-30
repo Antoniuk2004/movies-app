@@ -1,13 +1,20 @@
 import FooterLayout from "./FooterLayout";
+import SocialMedia from "@/common-components/Footer/components/SocialMedia/SocialMedia";
+import Copyright from "@/common-components/Footer/components/Copyright";
+import ListData from "@/common-components/Footer/components/ListData/ListData";
 
-const Footer = () => {
+type FooterProps = {
+    currentPage: string;
+}
+
+const Footer = (props: FooterProps) => {
+    const {currentPage} = props;
+
     return (
-        <FooterLayout>
-            <div>
-                <title>Contact Us</title>
-                <span>+380..</span>
-                <span>name@gmail.com</span>
-            </div>
+        <FooterLayout currentPage={currentPage}>
+            <SocialMedia/>
+            <ListData/>
+            <Copyright/>
         </FooterLayout>
     )
 }

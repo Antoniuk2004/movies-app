@@ -99,10 +99,11 @@ const config: Config = {
                 'app-without-catalog-header': 'calc(100svh - 3rem)',
                 110: '27.5rem',
                 inherit: 'inherit',
+                'no-footer' : 'calc(100svh - 3.5rem - 1rem)'
             },
             fontSize: {
                 'rate-modal-start': '1.6875rem'
-            }
+            },
         },
     },
     plugins: [
