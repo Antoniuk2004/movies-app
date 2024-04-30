@@ -10,7 +10,7 @@ type DropdownProps = LayoutProps & {
     setSelected: Dispatch<SetStateAction<string>>
     setAdditionalCase?: Dispatch<SetStateAction<string>>;
     onElementClick: (option: string) => void;
-    onAdditionalCaseClick(option: string): void;
+    onAdditionalCaseClick?: (option: string) => void;
     additionalClasses?: string[];
 }
 

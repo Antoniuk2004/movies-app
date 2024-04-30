@@ -7,6 +7,8 @@ import {openCatalogPage, openMainPage} from "@/common-components/Header/helpers"
 import {useRouter as useNavRouter} from "next/navigation";
 import NavbarIconLayout from "@/common-components/Header/components/NavbarIconLayout";
 import {useRouter as useInfoRouter} from "next/router";
+import {searchValueSignal} from "@/common-components/SearchModal/signals/search-value-signal";
+import {openSearchModalSignal} from "@/common-components/SearchModal/signals/open-search-modal-signal";
 
 type HeaderProps = {
     currentPage: string;
@@ -29,7 +31,7 @@ const Header = (props: HeaderProps) => {
                     title={'Catalog'}
                 />
                 <NavbarItem
-                    action={() => console.log('Search')}
+                    action={() => openSearchModalSignal.value = true}
                     icon={<IoSearch/>}
                     title={'Search'}
                 />

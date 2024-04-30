@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import program.moviesappbackend.api.movies.bodies.MainPageMovies;
 import program.moviesappbackend.api.movies.bodies.RatingBody;
 import program.moviesappbackend.api.movies.models.FilterRequest;
 import program.moviesappbackend.api.movies.models.Movie;
@@ -26,21 +27,6 @@ public class MovieController {
     public MovieController(MovieService movieService, TokenService tokenService) {
         this.movieService = movieService;
         this.tokenService = tokenService;
-    }
-
-    @GetMapping("/all")
-    public List<Movie> getAllMovies() {
-        return movieService.getAllMovies();
-    }
-
-    @GetMapping("/latest")
-    public ResponseEntity<List<Movie>> getLatestMovies(@RequestParam(name = "limit", defaultValue = "10") int limit) {
-        Optional<List<Movie>> optionalMovies = movieService.getLatestMovies(limit);
-
-        if (optionalMovies.isPresent()) {
-            List<Movie> movies = optionalMovies.get();
-            return new ResponseEntity<>(movies, HttpStatus.OK);
-        } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/{id}")
@@ -94,6 +80,17 @@ public class MovieController {
         return new ResponseEntity<>(movies, HttpStatus.OK);
     }
 
+    @GetMapping("/")
+    private ResponseEntity<MainPageMovies> getMovies(@RequestParam(defaultValue = "10") int limit) {
+        MainPageMovies mainPageMovies = MainPageMovies.builder()
+                .recentMovies(movieService.getRecentMovies(limit))
+                .popularMovies(movieService.getPopularMovies(limit))
+                .recommendedMovies(movieService.getRecommendedMovies(limit))
+                .build();
+
+        return new ResponseEntity<>(mainPageMovies, HttpStatus.OK);
+    }
+
     private String getUsername(String authorizationHeader) {
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             String jwt = authorizationHeader.substring(7);
@@ -103,5 +100,6 @@ public class MovieController {
         }
         return null;
     }
+
 
 }

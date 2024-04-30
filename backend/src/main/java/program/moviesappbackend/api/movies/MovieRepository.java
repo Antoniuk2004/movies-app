@@ -13,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Repository
@@ -26,42 +25,6 @@ public class MovieRepository {
     public MovieRepository(Connection connection, QueryBuilder queryBuilder) throws SQLException {
         this.connection = connection;
         this.queryBuilder = queryBuilder;
-    }
-
-    @SneakyThrows
-    public List<Movie> findLatestMovies(int limit) {
-        String sql = "SELECT * FROM movies ORDER BY added_at DESC limit ?";
-
-        List<Movie> movies = new ArrayList<>();
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, limit);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                movies.add(buildNormalMovie(resultSet));
-            }
-        }
-
-        return movies;
-    }
-
-    @SneakyThrows
-    public List<Movie> findAll() {
-        String sql = "SELECT * FROM movies";
-
-        List<Movie> movies = new ArrayList<>();
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                movies.add(buildNormalMovie(resultSet));
-            }
-        }
-
-        return movies;
     }
 
     @SneakyThrows
@@ -133,7 +96,7 @@ public class MovieRepository {
     }
 
     @SneakyThrows
-    private Movie buildCatalogMovie(ResultSet resultSet){
+    private Movie buildCatalogMovie(ResultSet resultSet) {
         return Movie.builder()
                 .watchingStatus(resultSet.getString("watching_status"))
                 .movieId(resultSet.getInt("movie_id"))
@@ -298,8 +261,6 @@ public class MovieRepository {
     public List<Movie> findFilteredMovies(FilterRequest filterRequest, String username) {
         String sql = queryBuilder.buildFilterQuery(filterRequest, username);
 
-        System.out.println(sql);
-
         List<Movie> movies = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -311,5 +272,51 @@ public class MovieRepository {
         }
 
         return movies;
+    }
+
+    @SneakyThrows
+    public List<Movie> findPopularMovies(int limit) {
+        String sql = "SELECT M.* FROM movies M " +
+                "INNER JOIN users_watching_statuses UWS ON UWS.movie_id = M.movie_id " +
+                "GROUP BY M.movie_id " +
+                "ORDER BY COUNT(UWS.watching_status_id) DESC " +
+                "LIMIT ?";
+
+        return getMovies(limit, sql);
+    }
+
+    @SneakyThrows
+    public List<Movie> findRecentMovies(int limit) {
+        String sql = "SELECT * FROM movies ORDER BY added_at DESC limit ?";
+
+        return getMovies(limit, sql);
+    }
+
+    private List<Movie> getMovies(int limit, String sql) throws SQLException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, limit);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            List<Movie> movies = new ArrayList<>();
+            while (resultSet.next()) {
+                movies.add(Movie.builder()
+                        .movieId(resultSet.getInt("movie_id"))
+                        .title(resultSet.getString("title"))
+                        .cover(resultSet.getString("cover"))
+                        .build());
+            }
+            return movies;
+        }
+    }
+
+    @SneakyThrows
+    public List<Movie> findRecommendedMovies(int limit) {
+        String sql = "SELECT M.* FROM movies M " +
+                "WHERE M.movie_id in (1, 2, 5, 10, 12) " +
+                "ORDER BY M.movie_id " +
+                "LIMIT ?";
+
+        return getMovies(limit, sql);
     }
 }

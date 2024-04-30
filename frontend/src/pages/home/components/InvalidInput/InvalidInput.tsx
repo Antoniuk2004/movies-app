@@ -8,7 +8,7 @@ const InvalidInput = () => {
     return (
         <div className={"responsive:static absolute top-full items-center mt-1.5 z-20 text-base flex gap-x-1 text-red-500 "}>
             <IoIosCloseCircleOutline />
-            <span>{errors.username?.message}</span>
+            <span>{errors.username?.message as string}</span>
         </div>
     )
 }

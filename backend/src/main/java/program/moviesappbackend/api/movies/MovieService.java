@@ -17,10 +17,6 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
-    public List<Movie> getAllMovies() {
-        return movieRepository.findAll();
-    }
-
     public Optional<Movie> getMovieById(int id, String username) {
         Optional<Movie> movie = movieRepository.findById(id, username);
 
@@ -37,10 +33,8 @@ public class MovieService {
         }
     }
 
-    public Optional<List<Movie>> getLatestMovies(int limit) {
-        List<Movie> latestMovies = movieRepository.findLatestMovies(limit);
-
-        return Optional.ofNullable(latestMovies);
+    public List<Movie> getRecentMovies(int limit) {
+        return movieRepository.findRecentMovies(limit);
     }
 
     public boolean updateWatchingStatus(int movieId, int watchingStatusId, String username) {
@@ -53,5 +47,13 @@ public class MovieService {
 
     public List<Movie> getFilteredMovies(FilterRequest filterRequest, String username) {
         return movieRepository.findFilteredMovies(filterRequest, username);
+    }
+
+    public List<Movie> getPopularMovies(int limit) {
+        return movieRepository.findPopularMovies(limit);
+    }
+
+    public List<Movie> getRecommendedMovies(int limit) {
+        return movieRepository.findRecommendedMovies(limit);
     }
 }

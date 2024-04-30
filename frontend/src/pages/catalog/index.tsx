@@ -6,6 +6,7 @@ import Loader from "@/common-components/Loader/Loader";
 import CatalogHeader from "@/pages/catalog/components/CatalogHeader/CatalogHeader";
 import FilterModal from "@/pages/catalog/components/FilterModal/FilterModal";
 import SortingModal from "@/pages/catalog/components/SortingModal/SortingModal";
+import SearchModal from "@/common-components/SearchModal/SearchModal";
 
 const Catalog = () => {
     const movies = useInitialMovies();
@@ -13,6 +14,7 @@ const Catalog = () => {
     if (!movies) return <Loader/>;
     return (
         <>
+            <SearchModal/>
             <CatalogHeader/>
             <CatalogLayout>
                 <SortingModal/>
