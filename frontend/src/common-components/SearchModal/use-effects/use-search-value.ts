@@ -4,6 +4,7 @@ import {effect} from "@preact/signals-react";
 
 export const useSearchValue = () => {
     const [searchValue, setSearchValue] = useState<string>(searchValueSignal.value);
+    const [cancelToken, setCancelToken] = useState(null)
 
     useEffect(() => {
         effect(() => {
@@ -11,5 +12,5 @@ export const useSearchValue = () => {
         })
     }, []);
 
-    return searchValue;
+    return {searchValue, cancelToken, setCancelToken};
 }

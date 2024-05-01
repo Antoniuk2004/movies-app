@@ -10,6 +10,9 @@ import WatchBlock from "@/pages/movies/[id]/components/WatchBlock/WatchBlock";
 import MediaInfo from "@/pages/movies/[id]/components/MediaInfo/MediaInfo";
 import {movieQuerySignal} from "@/pages/movies/[id]/movie-query-signal";
 import {useMovieData} from "@/pages/movies/[id]/use-effects/use-movie-data";
+import MoviesHeader from "@/pages/movies/[id]/components/MoviesHeader/MoviesHeader";
+import Footer from "@/common-components/Footer/Footer";
+import BottomMenu from "@/common-components/BottomMenu/BottomMenu";
 
 const MoviePage = () => {
     movieQuerySignal.value = useMediaQuery();
@@ -20,6 +23,7 @@ const MoviePage = () => {
     return (
         <>
             <Wrapper>
+                <MoviesHeader/>
                 <MovieAppLayout>
                     <Banner/>
                     <Cover/>
@@ -30,6 +34,8 @@ const MoviePage = () => {
                     <WatchBlock/>
                 </MovieAppLayout>
             </Wrapper>
+            <BottomMenu/>
+            <Footer/>
         </>
     )
 }

@@ -8,7 +8,7 @@ const ModalLayout = ({ children }: LayoutProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className={"absolute right-0 bg-bl bg-banner-bottom flex justify-end top-0 z-30 w-screen h-svh overflow-hidden"}>
+            className={"absolute right-0 bg-bl bg-banner-bottom flex justify-end top-0 z-40 w-screen h-svh overflow-hidden"}>
             <motion.div
                 initial={{ x: 100 }}
                 animate={{ x: 0 }}

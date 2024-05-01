@@ -6,7 +6,7 @@ const IconLayout = ({children}: LayoutProps) => {
 
     return (
         <div
-            onClick={() => router.push("/main")}
+            onClick={() => router.back()}
             className={"flex size-8 justify-center items-center text-sm"}>
             {children}
         </div>

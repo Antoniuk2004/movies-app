@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import program.moviesappbackend.auth.models.LoginResponseDTO;
+import program.moviesappbackend.auth.models.AuthResponse;
 import program.moviesappbackend.auth.repositories.UserRepository;
 
 
@@ -31,20 +31,22 @@ public class AuthenticationService {
     }
 
     @SneakyThrows
-    public LoginResponseDTO loginUser(String username, String password) {
+    public AuthResponse loginUser(String username, String password) {
         try {
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(username, password)
             );
 
             String token = tokenService.generateJwt(auth);
-            return new LoginResponseDTO(true, token);
+
+            return new AuthResponse(true, token);
         } catch (AuthenticationException e) {
-            return new LoginResponseDTO(false, null);
+            System.out.println(username + " " + password + " " + e.getMessage());
+            return new AuthResponse(false, null);
         }
     }
 
-    public boolean registerUser(String username, String password) {
+    public AuthResponse registerUser(String username, String password) {
         String encodedPassword = passwordEncoder.encode(password);
         int userId = userRepository.addUser(username, encodedPassword);
 
@@ -52,6 +54,12 @@ public class AuthenticationService {
             userRepository.addRoleToUser(userId);
         }
 
-        return userId != -1;
+        Authentication auth = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(username, password)
+        );
+
+        String token = tokenService.generateJwt(auth);
+
+        return new AuthResponse(true, token);
     }
 }

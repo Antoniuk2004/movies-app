@@ -11,6 +11,7 @@ export const useModalFunctions = () => {
             if (openSearchModalSignal.value) {
                 open();
             }
+            else close();
         })
     }, []);
 

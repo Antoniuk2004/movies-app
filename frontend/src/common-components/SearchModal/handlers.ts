@@ -1,24 +1,33 @@
 import {openSearchModalSignal} from "@/common-components/SearchModal/signals/open-search-modal-signal";
 import {searchValueSignal} from "@/common-components/SearchModal/signals/search-value-signal";
-import {moviesRequest} from "@/api/movies-request";
-import {Sort} from "@/types/Sort";
-import {getKeyByValue} from "@/pages/catalog/helpers";
 import {FilterParams} from "@/types/FilterParams";
+import {buildFilterParams} from "./helpers";
+import {movieSearchRequest} from "@/api/movie-search-request";
+import {CancelTokenSource} from "axios";
+import {Dispatch, SetStateAction} from "react";
+import {Movie} from "@/types/Movie";
+import {AppRouterInstance} from "next/dist/shared/lib/app-router-context.shared-runtime";
 
-export const handleSearchModalClose = (close: () => void,) => {
-    close();
+export const handleSearchModalClose = () => {
     openSearchModalSignal.value = false;
 }
 
-export const handleSearchValueChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+export const handleSearchValueChange = (e: React.ChangeEvent<HTMLInputElement>,
+                                        cancelToken: CancelTokenSource,
+                                        setCancelToken: Dispatch<SetStateAction<CancelTokenSource>>,
+                                        setMovies: Dispatch<SetStateAction<Movie[]>>) => {
     searchValueSignal.value = e.currentTarget.value;
 
-    const filterParams = {
-        search: e.currentTarget.value,
-        order: getKeyByValue(Sort, Sort.DESC),
-        orderType: getKeyByValue(Sort, Sort.RATING),
-    }
+    const filterParams = buildFilterParams(e.currentTarget.value) as FilterParams;
+    movieSearchRequest(filterParams, cancelToken, setCancelToken, setMovies);
+}
 
-    const movies = await moviesRequest(filterParams as FilterParams);
-    console.log(movies);
+export const handleMovieCardClick = (router: AppRouterInstance, id: number) => {
+    router.push(`/movies/${id}?selection=overview`);
+    handleSearchModalClose();
+}
+
+export const handleSearchbarClear = (setMovies: Dispatch<SetStateAction<Movie[]>>) => {
+    searchValueSignal.value = "";
+    setMovies([]);
 }

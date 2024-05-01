@@ -1,4 +1,5 @@
 import {getRatingStyle} from "@/pages/catalog/helpers";
+import {roundNumber} from "@/pages/movies/[id]/helpers";
 
 type MovieRatingProps = {
     rating: number;
@@ -11,7 +12,7 @@ const MovieRating = (props: MovieRatingProps) => {
     return (
         <div
             className={`absolute ${style} rounded z-10 w-7 text-center text-xs font-['Roboto'] h-fit top-3.5 left-3.5`}
-        >{rating}</div>
+        >{roundNumber(rating, 2)}</div>
     )
 }
 

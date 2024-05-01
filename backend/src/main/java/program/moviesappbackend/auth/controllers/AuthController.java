@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import program.moviesappbackend.auth.models.MessageDTO;
-import program.moviesappbackend.auth.models.LoginResponseDTO;
+import program.moviesappbackend.auth.models.AuthResponse;
 import program.moviesappbackend.auth.models.UserDTO;
 import program.moviesappbackend.auth.services.AuthenticationService;
 import program.moviesappbackend.auth.services.TokenService;
@@ -30,19 +29,21 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<MessageDTO> registerUser(@RequestBody UserDTO body) {
-        boolean success = authenticationService.registerUser(body.getUsername(), body.getPassword());
-        if (success) return new ResponseEntity<>(new MessageDTO("User registered successfully"), HttpStatus.OK);
-        else return new ResponseEntity<>(new MessageDTO("Username already exists"), HttpStatus.CONFLICT);
+    public ResponseEntity<AuthResponse> registerUser(@RequestBody UserDTO body) {
+        AuthResponse authResponse = authenticationService.registerUser(body.getUsername(), body.getPassword());
+
+        if (authResponse.isSuccess()) {
+            return new ResponseEntity<>(authResponse, HttpStatus.OK);
+        } else return new ResponseEntity<>(authResponse, HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> loginUser(@RequestBody UserDTO body) {
-        LoginResponseDTO loginResponseDTO = authenticationService.loginUser(body.getUsername(), body.getPassword());
+    public ResponseEntity<AuthResponse> loginUser(@RequestBody UserDTO body) {
+        AuthResponse authResponse = authenticationService.loginUser(body.getUsername(), body.getPassword());
 
-        if (loginResponseDTO.isSuccess()) {
-            return new ResponseEntity<>(loginResponseDTO, HttpStatus.OK);
-        } else return new ResponseEntity<>(loginResponseDTO, HttpStatus.BAD_REQUEST);
+        if (authResponse.isSuccess()) {
+            return new ResponseEntity<>(authResponse, HttpStatus.OK);
+        } else return new ResponseEntity<>(authResponse, HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/validate")

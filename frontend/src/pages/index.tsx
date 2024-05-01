@@ -5,16 +5,20 @@ import Devices from "@/pages/home/components/Devices/Devices";
 import {useValidate} from "@/utils/use-validate";
 import {useStatus} from "@/utils/use-statuts";
 import Loader from "@/common-components/Loader/Loader";
+import Footer from "@/common-components/Footer/Footer";
 
 export default function Home() {
     const status = useStatus();
 
-    if(!status) return <Loader/>;
+    if (!status) return <Loader/>;
     return (
-        <HomePageLayout>
-            <Header/>
-            <HomeBanner/>
-            <Devices/>
-        </HomePageLayout>
+        <>
+            <HomePageLayout>
+                <Header/>
+                <HomeBanner/>
+                <Devices/>
+            </HomePageLayout>
+            <Footer/>
+        </>
     );
 }

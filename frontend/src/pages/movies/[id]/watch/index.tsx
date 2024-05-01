@@ -7,6 +7,7 @@ import CommentsSection from "@/pages/movies/[id]/watch/components/CommentsSectio
 import WatchingPageLayout from "@/pages/movies/[id]/watch/WatchingPageLayout";
 import VideoPlayer from "@/pages/movies/[id]/watch/components/VideoPlayer/VideoPlayer";
 import Loader from "@/common-components/Loader/Loader";
+import BottomMenu from "@/common-components/BottomMenu/BottomMenu";
 
 const WatchingPage = () => {
     const movieId = useWatchQuery();
@@ -15,12 +16,15 @@ const WatchingPage = () => {
 
     if (!video) return <Loader/>;
     return (
-        <WatchingPageLayout>
-            <WatchingHeader/>
-            <MovieInfo/>
-            <VideoPlayer video={video}/>
-            <CommentsSection/>
-        </WatchingPageLayout>
+        <>
+            <WatchingPageLayout>
+                <WatchingHeader/>
+                <MovieInfo/>
+                <VideoPlayer video={video}/>
+                <CommentsSection/>
+            </WatchingPageLayout>
+            <BottomMenu/>
+        </>
     )
 }
 

@@ -6,6 +6,8 @@ import Loader from "@/common-components/Loader/Loader";
 import CatalogHeader from "@/pages/catalog/components/CatalogHeader/CatalogHeader";
 import FilterModal from "@/pages/catalog/components/FilterModal/FilterModal";
 import SortingModal from "@/pages/catalog/components/SortingModal/SortingModal";
+import Footer from "@/common-components/Footer/Footer";
+import BottomMenu from "@/common-components/BottomMenu/BottomMenu";
 
 const Catalog = () => {
     const movies = useInitialMovies();
@@ -20,6 +22,8 @@ const Catalog = () => {
                 <LeftSide/>
                 <RightSide/>
             </CatalogLayout>
+            <BottomMenu/>
+            <Footer/>
         </>
     )
 }

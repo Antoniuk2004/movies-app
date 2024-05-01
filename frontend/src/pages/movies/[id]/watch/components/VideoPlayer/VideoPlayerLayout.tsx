@@ -10,7 +10,7 @@ const VideoPlayerLayout = ({children}: LayoutProps) => {
 
     return (
         <div
-            className={isFullscreen ? "absolute z-20 w-svw h-svh bg-black top-0 left-0 flex justify-center" : 'responsive:flex responsive:bg-black responsive:min-h-110'}>
+            className={isFullscreen ? "absolute z-40 w-svw h-svh bg-black top-0 left-0 flex justify-center" : 'responsive:flex responsive:bg-black responsive:min-h-110'}>
             <div
                 className={`${isFullscreen ? '' : 'rounded-xl'} wrapper:rounded-none relative overflow-hidden`}>
                 <BlackScreen isShown={isShown}/>

@@ -14,7 +14,6 @@ export default function App({Component, pageProps}: AppProps) {
     const router = useRouter();
     const currentPage = router.pathname;
     const headerPages = ["/movies/[id]", "/catalog", "/main", "/movies/[id]/watch"];
-    const footerPages = ["/movies/[id]", "/catalog", "/main", "/"];
     const unsignedPages = ["/", "/signin", "/signup"];
 
     const status = useValidate(currentPage, unsignedPages);
@@ -27,7 +26,6 @@ export default function App({Component, pageProps}: AppProps) {
             <SearchModal/>
             {headerPages.includes(currentPage) && <Header currentPage={currentPage}/>}
             <Component {...pageProps} />
-            {footerPages.includes(currentPage) && <Footer currentPage={currentPage}/>}
         </MantineProvider>
     );
 }

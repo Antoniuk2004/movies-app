@@ -2,6 +2,7 @@ import SmallTitleLayout from "../../../../../../../../../common-components/Small
 import Separator from "@/pages/movies/[id]/components/MediaInfo/components/Separator";
 import {FaStar} from "react-icons/fa6";
 import {useRatingData} from "@/pages/movies/[id]/components/Rating/use-rating-data";
+import {roundNumber} from "@/pages/movies/[id]/helpers";
 
 const DistributionTitle = () => {
     const ratingData = useRatingData();
@@ -14,7 +15,7 @@ const DistributionTitle = () => {
             <span>User ratings</span>
             <Separator>
                 <FaStar className="text-yellow-400 -mt-0.5"/>
-                <span>{rating}</span>
+                <span>{roundNumber(rating, 2)}</span>
                 <span className={"text-sm leading-[14px] opacity-70 font-light"}>{totalRates}</span>
             </Separator>
         </SmallTitleLayout>

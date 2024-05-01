@@ -78,7 +78,6 @@ public class UserRepository {
         if (resultSet.next()) {
             int userId = resultSet.getInt("user_id");
             String password = resultSet.getString("password");
-            String profilePicture = resultSet.getString("profile_picture");
             int roleId = resultSet.getInt("role_id");
             String authority = resultSet.getString("authority");
 
@@ -89,7 +88,6 @@ public class UserRepository {
                     .userId(userId)
                     .username(username)
                     .password(password)
-                    .profilePicture(profilePicture)
                     .authorities(roles)
                     .build();
         }

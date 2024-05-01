@@ -3,15 +3,9 @@ import SocialMedia from "@/common-components/Footer/components/SocialMedia/Socia
 import Copyright from "@/common-components/Footer/components/Copyright";
 import ListData from "@/common-components/Footer/components/ListData/ListData";
 
-type FooterProps = {
-    currentPage: string;
-}
-
-const Footer = (props: FooterProps) => {
-    const {currentPage} = props;
-
+const Footer = () => {
     return (
-        <FooterLayout currentPage={currentPage}>
+        <FooterLayout>
             <SocialMedia/>
             <ListData/>
             <Copyright/>

@@ -24,6 +24,7 @@ const config: Config = {
                 'header-shadow': '0 1px 3px 0.1px rgba(0, 0, 0, 0.12)',
                 'media-tabs': 'inset 0 -1px #e5e5e5',
                 dropdown: 'rgba(0, 0, 0, 0.2) 0px 4px 16px 0px',
+                'bottom-menu': 'rgba(0, 0, 0, 0.2) 0px 3px 6px'
             },
             colors: {
                 'primary': '#ff9001',
@@ -98,8 +99,9 @@ const config: Config = {
                 'app-without-normal-header': 'calc(100svh - 3.5rem)',
                 'app-without-catalog-header': 'calc(100svh - 3rem)',
                 110: '27.5rem',
+                64: '16rem',
                 inherit: 'inherit',
-                'no-footer' : 'calc(100svh - 3.5rem - 1rem)'
+                'no-footer': 'calc(100svh - 3.5rem - 1rem)'
             },
             fontSize: {
                 'rate-modal-start': '1.6875rem'

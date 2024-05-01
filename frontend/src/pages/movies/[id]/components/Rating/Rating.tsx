@@ -3,6 +3,7 @@ import {FaRegStar, FaStar} from "react-icons/fa6";
 import TopLine from "@/pages/movies/[id]/components/Rating/components/TopLine";
 import RateButton from "@/pages/movies/[id]/components/Rating/components/RateButton";
 import {useRatingData} from "@/pages/movies/[id]/components/Rating/use-rating-data";
+import {roundNumber} from "@/pages/movies/[id]/helpers";
 
 const Rating = () => {
     const ratingData = useRatingData();
@@ -14,7 +15,7 @@ const Rating = () => {
         <RatingLayout>
             <TopLine>
                 <FaStar className="text-yellow-400"/>
-                <span>{rating}</span>
+                <span>{roundNumber(rating, 2)}</span>
                 <span className={"text-lg responsive:text-xs leading-[18px] opacity-70 font-light"}>{totalRates}</span>
             </TopLine>
             <RateButton>

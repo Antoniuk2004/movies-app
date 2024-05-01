@@ -5,6 +5,8 @@ import {useMainPageMovies} from "@/pages/main/use-main-page-movies";
 import Loader from "@/common-components/Loader/Loader";
 import {useRouter} from "next/navigation";
 import MainHeader from "@/pages/main/components/MainHeader/MainHeader";
+import Footer from "@/common-components/Footer/Footer";
+import BottomMenu from "@/common-components/BottomMenu/BottomMenu";
 
 const MainPage = () => {
     const mainPageMovies = useMainPageMovies();
@@ -23,6 +25,8 @@ const MainPage = () => {
                     <MovieList router={router} movies={recommendedMovies} title={'Recommended'}/>
                 </MainPageLayout>
             </Wrapper>
+            <BottomMenu/>
+            <Footer/>
         </>
     )
 }

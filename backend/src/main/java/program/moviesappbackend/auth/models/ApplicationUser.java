@@ -17,7 +17,6 @@ public class ApplicationUser implements UserDetails {
     private int userId;
     private String password;
     private String username;
-    private String profilePicture;
     private Set<Role> authorities;
 
     public ApplicationUser() {
