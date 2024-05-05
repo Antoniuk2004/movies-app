@@ -29,14 +29,16 @@ const SearchModal = () => {
             <Modal.Content>
                 <SearchModalHeader close={close}/>
                 <ModalSearchbar setMovies={setMovies}/>
-                <MovieListLayout>
-                    {movies && movies.map((movie: Movie, index: Key) => (
-                        <MovieSearchCard
-                            router={router}
-                            movie={movie}
-                            key={index}/>
-                    ))}
-                </MovieListLayout>
+                {movies.length > 0 && (
+                    <MovieListLayout>
+                        {movies && movies.map((movie: Movie, index: Key) => (
+                            <MovieSearchCard
+                                router={router}
+                                movie={movie}
+                                key={index}/>
+                        ))}
+                    </MovieListLayout>
+                )}
             </Modal.Content>
         </Modal.Root>
     )

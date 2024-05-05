@@ -21,8 +21,9 @@ const WatchingPage = () => {
                 <WatchingHeader/>
                 <MovieInfo/>
                 <VideoPlayer video={video}/>
-                <CommentsSection/>
+                <CommentsSection isMobile={false}/>
             </WatchingPageLayout>
+            <CommentsSection isMobile={true}/>
             <BottomMenu/>
         </>
     )

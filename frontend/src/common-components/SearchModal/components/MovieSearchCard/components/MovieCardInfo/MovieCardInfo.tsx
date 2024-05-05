@@ -3,6 +3,7 @@ import {Movie} from "@/types/Movie";
 import {FaStar} from "react-icons/fa6";
 import BottomInfoLayout from "@/common-components/SearchModal/components/MovieSearchCard/components/BottomInfoLayout";
 import MovieCardTitle from "@/common-components/SearchModal/components/MovieSearchCard/components/MovieCardTitle";
+import {roundNumber} from "@/pages/movies/[id]/helpers";
 
 type MovieCardInfoProps = {
     movie: Movie;
@@ -16,7 +17,7 @@ const MovieCardInfo = (props: MovieCardInfoProps) => {
             <MovieCardTitle title={movie.title}/>
             <BottomInfoLayout>
                 <FaStar className={"mb-0.5 text-yellow-400 mr-0.5"}/>
-                <span className={"mr-2"}>{movie.rating}</span>
+                <span className={"mr-2"}>{roundNumber(movie.rating, 2)}</span>
                 <span className={"font-['Roboto']"}>{movie.releaseYear}</span>
             </BottomInfoLayout>
         </MovieCardInfoLayout>

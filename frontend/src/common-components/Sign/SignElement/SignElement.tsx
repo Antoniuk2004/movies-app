@@ -1,7 +1,7 @@
 import TopUser from "@/common-components/Sign/TopUser/TopUser";
 import InvalidData from "@/common-components/Sign/DataInput/InvalidData";
 import DataInput from "@/common-components/Sign/DataInput/DataInput";
-import {FaLock} from "react-icons/fa";
+import {FaLock, FaUser} from "react-icons/fa";
 import SignButton from "@/common-components/Sign/SignButton/SignButton";
 import SingLayout from "@/common-components/Sign/layout";
 import {Dispatch, FormEvent, MutableRefObject, RefObject, SetStateAction} from "react";
@@ -32,7 +32,7 @@ const SignElement = (props: SignContentProps) => {
             <TopUser/>
             <InvalidData wrong={data.wrong}/>
             <DataInput
-                icon={<FaLock/>}
+                icon={<FaUser/>}
                 type={'text'}
                 id={'username'}
                 value={data.username}

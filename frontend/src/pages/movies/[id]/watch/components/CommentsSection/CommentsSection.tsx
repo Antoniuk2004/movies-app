@@ -1,8 +1,14 @@
 import CommentsSectionLayout from "./CommentsSectionLayout";
 
-const CommentsSection = () => {
+type CommentsSectionProps = {
+    isMobile: boolean;
+}
+
+const CommentsSection = (props: CommentsSectionProps) => {
+    const {isMobile} = props;
+
     return (
-        <CommentsSectionLayout>
+        <CommentsSectionLayout isMobile={isMobile}>
             <span className={"mt-4"}>Coming soon</span>
         </CommentsSectionLayout>
     )

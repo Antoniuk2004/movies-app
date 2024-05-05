@@ -13,7 +13,7 @@ const MovieSearchCardLayout = (props: MovieSearchCardLayoutProps) => {
     return (
         <div
             onClick={() => handleMovieCardClick(router, id)}
-            className={"p-2 flex gap-x-3"}>
+            className={"p-2 flex gap-x-3 hover:bg-hover-light rounded-md duration-200 ease-in-out cursor-pointer"}>
             {children}
         </div>
     )

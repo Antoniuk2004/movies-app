@@ -15,6 +15,11 @@ export const movieSearchRequest = async (filterParams: FilterParams,
     const newCancelToken = axios.CancelToken.source();
     setCancelToken(newCancelToken);
 
+    if(filterParams.search.length < 3) {
+        setMovies([]);
+        return;
+    }
+
     const url = 'http://localhost:8080/api/movies/filter';
     try {
         let response = await axios.post(url, {...filterParams}, {

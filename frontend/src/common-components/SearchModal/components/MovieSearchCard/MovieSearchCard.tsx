@@ -16,7 +16,7 @@ const MovieSearchCard = (props: MovieSearchCard) => {
     return (
         <MovieSearchCardLayout router={router} id={movie.movieId}>
             <Image
-                className={"rounded-md w-[53.3px] h-[80px] object-cover object-center"}
+                className={"rounded-md w-[53.3px] h-[80px] object-cover object-center shadow-md"}
                 src={movie.cover}
                 width={53.3}
                 height={80}

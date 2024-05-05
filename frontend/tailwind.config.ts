@@ -71,6 +71,7 @@ const config: Config = {
             },
             screens: {
                 wrapper: {max: '75rem'},
+                'desktop-screen' : {min: '1025px'},
                 responsive: {max: '1024px'},
                 'too-small': {max: '400px'},
                 'movies-grid-sm': {max: '530px'},

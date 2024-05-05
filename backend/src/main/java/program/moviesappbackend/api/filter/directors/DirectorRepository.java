@@ -3,9 +3,7 @@ package program.moviesappbackend.api.filter.directors;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import program.moviesappbackend.api.Gender;
 import program.moviesappbackend.api.filter.FilterPerson;
-import program.moviesappbackend.api.movies.models.Person;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
